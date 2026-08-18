@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CodeQuackers — Code that ships. Products that fly.</title>
+<meta name="description" content="CodeQuackers is an independent software studio building AI-accelerated web apps, SaaS platforms, dashboards and fintech tools — from gym management to bullion trading, and more swimming in the pond." />
+<meta name="theme-color" content="#07090E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='46' cy='12' r='8.5' fill='%23FFB02E'/%3E%3Cpath d='M53.5 9.5 Q60 10.5 60 12.5 Q60 14.5 53.5 15.5 Q52.2 12.5 53.5 9.5Z' fill='%23FF7A1A'/%3E%3Ccircle cx='49.3' cy='9.6' r='1.6' fill='%2307090E'/%3E%3Crect x='3' y='14' width='58' height='46' rx='15' fill='%23FF9A3C'/%3E%3Cpath d='M21 30.5 L29.5 37 L21 43.5' fill='none' stroke='%231B0F02' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M43 30.5 L34.5 37 L43 43.5' fill='none' stroke='%231B0F02' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M38.5 25 L31.5 49' fill='none' stroke='%231B0F02' stroke-width='4.2' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+/* ============ Base ============ */
+:root{
+  --bg:#07090E;
+  --bg-soft:#0C1118;
+  --surface:rgba(255,255,255,.035);
+  --surface-2:rgba(255,255,255,.065);
+  --border:rgba(255,255,255,.09);
+  --border-strong:rgba(255,255,255,.16);
+  --text:#EDF1F7;
+  --muted:#9AA4B5;
+  --orange:#FF9A3C;
+  --orange-deep:#FF6B1A;
+  --teal:#35E0C0;
+  --grad-orange:linear-gradient(135deg,#FFC24B 0%,#FF8A1E 55%,#FF6B1A 100%);
+  --grad-teal:linear-gradient(135deg,#3EE0C4,#12A8A0);
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --radius:20px;
+  --shadow-card:0 20px 50px -20px rgba(0,0,0,.55);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:hidden;overflow-x:clip}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  overflow-x:clip;
+}
+::selection{background:rgba(255,154,60,.35);color:#fff}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#232b38;border-radius:99px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:#333d4d}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.container{width:min(1140px,92%);margin-inline:auto}
+section{position:relative}
+.section{overflow:hidden}
+.section > .container{position:relative;z-index:1}
+
+/* film grain overlay */
+.noise{
+  position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* scroll progress */
+.progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:95;
+  background:var(--grad-orange);
+  border-radius:0 3px 3px 0;
+  box-shadow:0 0 14px rgba(255,138,30,.55);
+  transition:width .08s linear;
+}
+
+/* ============ Buttons ============ */
+.btn{
+  position:relative;display:inline-flex;align-items:center;gap:.55rem;
+  padding:.85rem 1.6rem;border-radius:999px;font-weight:600;font-size:.95rem;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,border-color .3s,color .3s;
+  overflow:hidden;white-space:nowrap;will-change:transform;
+}
+.btn-primary{
+  background:var(--grad-orange);color:#1B0F02;
+  box-shadow:0 10px 30px -8px rgba(255,138,30,.45);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(255,138,30,.6)}
+.btn-primary::after{
+  content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:skewX(-20deg);transition:left .6s var(--ease);
+}
+.btn-primary:hover::after{left:130%}
+.btn-ghost{
+  border:1px solid var(--border-strong);color:var(--text);background:var(--surface);
+  backdrop-filter:blur(8px);
+}
+.btn-ghost:hover{transform:translateY(-2px);border-color:rgba(255,154,60,.6);color:var(--orange)}
+.btn-lg{padding:1.05rem 2.1rem;font-size:1.05rem}
+
+/* ============ Nav ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  transition:background .35s,border-color .35s,backdrop-filter .35s;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(7,9,14,.78);
+  backdrop-filter:blur(14px);
+  border-bottom-color:var(--border);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:.65rem;font-family:var(--font-display)}
+.logo-mark{width:38px;height:38px;filter:drop-shadow(0 4px 14px rgba(255,154,60,.35));transition:transform .4s var(--ease)}
+.logo:hover .logo-mark{transform:rotate(-8deg) scale(1.06)}
+.logo-text{font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+.logo-text em{font-style:normal;background:var(--grad-orange);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-tag{
+  font-family:var(--font-mono);font-size:.58em;font-weight:600;color:rgba(255,154,60,.85);
+  margin-left:.15em;display:inline-block;transform:translateY(-.2em);
+}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a:not(.btn){
+  font-size:.92rem;font-weight:500;color:var(--muted);position:relative;transition:color .25s;
+}
+.nav-links a:not(.btn)::after{
+  content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;border-radius:2px;
+  background:var(--grad-orange);transition:width .3s var(--ease);
+}
+.nav-links a:not(.btn):hover{color:var(--text)}
+.nav-links a:not(.btn):hover::after{width:100%}
+.nav .btn{padding:.6rem 1.25rem;font-size:.88rem}
+.menu-btn{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--border-strong);background:var(--surface);flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.menu-btn span{width:18px;height:2px;border-radius:2px;background:var(--text);transition:transform .3s var(--ease),opacity .3s}
+.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ============ Hero ============ */
+.hero{
+  min-height:100svh;display:flex;align-items:center;
+  padding:140px 0 80px;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 65% at 50% 30%,#000 30%,transparent 75%);
+          mask-image:radial-gradient(ellipse 80% 65% at 50% 30%,#000 30%,transparent 75%);
+}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.orb-1{width:480px;height:480px;top:-140px;right:-120px;background:rgba(255,138,30,.14);animation:drift 14s ease-in-out infinite alternate}
+.orb-2{width:420px;height:420px;bottom:-180px;left:-140px;background:rgba(18,168,160,.12);animation:drift 18s ease-in-out infinite alternate-reverse}
+.orb-3{width:420px;height:420px;top:8%;left:-180px;background:rgba(255,138,30,.07);animation:drift 16s ease-in-out infinite alternate}
+.orb-4{width:380px;height:380px;top:34%;right:-160px;background:rgba(18,168,160,.08);animation:drift 20s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(-40px,50px)}}
+
+/* floating code glyphs */
+.glyph{
+  position:absolute;font-family:var(--font-mono);font-weight:600;
+  color:rgba(255,255,255,.13);font-size:clamp(13px,1.3vw,19px);
+  pointer-events:none;animation:floatUp linear infinite;z-index:0;
+}
+.glyph.g-teal{color:rgba(53,224,192,.16)}
+.glyph.g-orange{color:rgba(255,154,60,.15)}
+.glyph:nth-of-type(1){left:5%;animation-duration:24s;animation-delay:-4s}
+.glyph:nth-of-type(2){left:14%;top:20%;animation-duration:30s;animation-delay:-15s}
+.glyph:nth-of-type(3){left:26%;animation-duration:27s;animation-delay:-9s}
+.glyph:nth-of-type(4){left:37%;top:12%;animation-duration:33s;animation-delay:-22s}
+.glyph:nth-of-type(5){left:58%;animation-duration:26s;animation-delay:-12s}
+.glyph:nth-of-type(6){left:72%;top:24%;animation-duration:31s;animation-delay:-6s}
+.glyph:nth-of-type(7){left:85%;animation-duration:28s;animation-delay:-18s}
+.glyph:nth-of-type(8){left:93%;top:30%;animation-duration:25s;animation-delay:-2s}
+@keyframes floatUp{
+  0%{transform:translateY(48vh);opacity:0}
+  12%{opacity:.9}
+  88%{opacity:.9}
+  100%{transform:translateY(-26vh);opacity:0}
+}
+
+.hero-grid{
+  position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;
+  align-items:center;z-index:1;
+}
+.pill{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.42rem .95rem;border-radius:999px;
+  border:1px solid var(--border-strong);background:var(--surface);font-size:.82rem;font-weight:500;color:var(--muted);
+  backdrop-filter:blur(8px);
+}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:#2EE6A8;box-shadow:0 0 0 0 rgba(46,230,168,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(46,230,168,.55)}
+  70%{box-shadow:0 0 0 9px rgba(46,230,168,0)}
+  100%{box-shadow:0 0 0 0 rgba(46,230,168,0)}
+}
+.hero-title{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.6rem,6vw,4.3rem);
+  line-height:1.05;letter-spacing:-.035em;margin:1.4rem 0 1.3rem;
+}
+.grad{
+  background:var(--grad-orange);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradMove 6s ease-in-out infinite alternate;
+}
+@keyframes gradMove{to{background-position:100% 50%}}
+.hero-sub{color:var(--muted);font-size:1.08rem;max-width:35rem;margin-bottom:2.2rem}
+.typed{color:var(--orange);font-weight:600}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--orange);margin-left:2px;vertical-align:-2px;animation:caretBlink 1s steps(1) infinite}
+@keyframes caretBlink{50%{opacity:0}}
+.hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:2.8rem}
+.hero-stats{display:flex;gap:0;align-items:center;flex-wrap:wrap}
+.stat{padding:.2rem 1.6rem;border-left:1px solid var(--border)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat b{display:block;font-family:var(--font-display);font-size:1.5rem;font-weight:700;letter-spacing:-.02em}
+.stat b em{font-style:normal;background:var(--grad-orange);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+/* hero visual */
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:460px}
+.hero-visual::before{
+  content:"";position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,154,60,.16),transparent 65%);
+  animation:breath 6s ease-in-out infinite;
+}
+@keyframes breath{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.08);opacity:1}}
+.spin-badge{
+  position:absolute;width:300px;height:300px;z-index:1;
+  animation:spin 22s linear infinite;
+}
+.spin-badge svg{width:100%;height:100%}
+.spin-badge text{fill:rgba(237,241,247,.55);font-family:var(--font-display);font-size:8.2px;font-weight:600;letter-spacing:2.2px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mascot{
+  position:relative;width:240px;height:240px;z-index:2;
+  filter:drop-shadow(0 24px 45px rgba(255,138,30,.28));
+  animation:floaty 5.5s ease-in-out infinite;
+}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-18px) rotate(2deg)}}
+.m-eye{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.ground{
+  position:absolute;bottom:26px;width:190px;height:26px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,0,0,.5),transparent 70%);
+  animation:breath 5.5s ease-in-out infinite;
+}
+.chip{
+  position:absolute;z-index:3;display:flex;align-items:center;gap:.5rem;
+  padding:.55rem .95rem;border-radius:999px;font-size:.82rem;font-weight:600;
+  background:rgba(13,17,24,.72);border:1px solid var(--border-strong);
+  backdrop-filter:blur(10px);color:var(--text);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.6);
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+  animation:floaty 6s ease-in-out infinite;
+}
+.chip:hover{border-color:rgba(255,154,60,.65);box-shadow:0 14px 34px -12px rgba(255,138,30,.35)}
+.chip em{font-style:normal;font-size:1.05rem;line-height:1}
+.chip-1{top:6%;left:4%}
+.chip-2{top:14%;right:0;animation-delay:-2s}
+.chip-3{bottom:16%;left:2%;animation-delay:-4s}
+.chip-4{bottom:6%;right:6%;animation-delay:-1.5s}
+.chip-5{top:46%;right:3%;animation-delay:-2.5s}
+
+.scroll-hint{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+  color:var(--muted);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:.7rem;z-index:2;
+}
+.scroll-hint .mouse{
+  width:22px;height:36px;border:2px solid rgba(237,241,247,.45);border-radius:12px;position:relative;
+}
+.scroll-hint .wheel{
+  position:absolute;top:6px;left:50%;width:4px;height:8px;border-radius:3px;background:var(--orange);
+  transform:translateX(-50%);box-shadow:0 0 8px rgba(255,138,30,.6);
+  animation:wheelDrop 1.9s var(--ease) infinite;
+}
+@keyframes wheelDrop{0%{opacity:0;transform:translate(-50%,0)}25%{opacity:1}70%{opacity:1}100%{opacity:0;transform:translate(-50%,16px)}}
+.scroll-hint em{font-style:normal;animation:fadePulse 2s ease-in-out infinite}
+@keyframes fadePulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ============ Marquee ============ */
+.marquee{position:relative;border-block:1px solid var(--border);background:var(--bg-soft);overflow:hidden;padding:1.15rem 0}
+.marquee-track{display:flex;gap:3rem;width:max-content;animation:scroll 32s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{display:flex;align-items:center;gap:3rem;font-family:var(--font-display);font-weight:600;font-size:1.05rem;letter-spacing:.02em;color:var(--muted);white-space:nowrap}
+.marquee-track i{font-style:normal;color:var(--orange)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee.alt{background:transparent;border-block:none}
+.marquee.alt .marquee-track{animation-direction:reverse;animation-duration:26s}
+.marquee.alt .marquee-track span{font-family:var(--font-mono);font-size:.92rem;letter-spacing:.04em;color:rgba(154,164,181,.75)}
+.marquee.alt .marquee-track i{color:var(--teal)}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+
+/* ============ Sections ============ */
+.section{padding:110px 0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+  margin-bottom:1rem;
+}
+.eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--grad-orange)}
+.section-title{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin-bottom:1rem}
+.section-sub{color:var(--muted);max-width:38rem;font-size:1.03rem}
+
+/* ============ About ============ */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+.about-copy p{color:var(--muted);margin-bottom:1.2rem}
+.about-copy p strong{color:var(--text);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.chips span{
+  padding:.5rem 1rem;border-radius:999px;font-size:.84rem;font-weight:500;color:var(--text);
+  background:var(--surface);border:1px solid var(--border);
+  transition:border-color .3s,transform .3s;
+}
+.chips span:hover{border-color:rgba(255,154,60,.55);transform:translateY(-2px)}
+.steps{display:flex;flex-direction:column;gap:1.1rem}
+.step{
+  display:flex;gap:1.2rem;align-items:flex-start;
+  padding:1.35rem 1.5rem;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);
+  transition:transform .35s var(--ease),border-color .35s;
+}
+.step:hover{transform:translateY(-3px);border-color:rgba(255,154,60,.4)}
+.step-num{
+  flex:none;width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:700;font-size:1rem;color:#1B0F02;background:var(--grad-orange);
+  box-shadow:0 8px 20px -8px rgba(255,138,30,.5);
+  transition:transform .4s var(--ease);
+}
+.step:hover .step-num{transform:rotate(-8deg) scale(1.08)}
+.step h3{font-family:var(--font-display);font-size:1.08rem;font-weight:600;margin-bottom:.25rem}
+.step p{color:var(--muted);font-size:.94rem}
+
+/* ============ Services ============ */
+.services-head{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:3rem}
+.terminal{
+  border-radius:16px;overflow:hidden;border:1px solid var(--border);
+  background:#0A0E15;box-shadow:var(--shadow-card);
+  font-family:var(--font-mono);font-size:.88rem;
+  transition:border-color .4s,box-shadow .4s;
+}
+.terminal:hover{border-color:rgba(255,154,60,.5);box-shadow:0 24px 60px -20px rgba(0,0,0,.6),0 0 44px -18px rgba(255,138,30,.4)}
+.term-bar{
+  display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;
+  background:rgba(255,255,255,.04);border-bottom:1px solid var(--border);
+}
+.term-dot{width:11px;height:11px;border-radius:50%}
+.term-dot.r{background:#FF5F57}.term-dot.y{background:#FEBC2E}.term-dot.g{background:#28C840}
+.term-title{margin-left:.6rem;color:var(--muted);font-size:.74rem}
+.term-body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.45rem}
+.term-body p{opacity:0;transform:translateX(-8px)}
+.terminal.in .term-body p{animation:termIn .55s var(--ease) forwards}
+.terminal.in .term-body p:nth-child(1){animation-delay:.15s}
+.terminal.in .term-body p:nth-child(2){animation-delay:.85s}
+.terminal.in .term-body p:nth-child(3){animation-delay:1.4s}
+.terminal.in .term-body p:nth-child(4){animation-delay:2.1s}
+.terminal.in .term-body p:nth-child(5){animation-delay:2.7s}
+@keyframes termIn{to{opacity:1;transform:none}}
+.prompt{color:var(--orange);font-weight:600}
+.cmd{color:var(--text)}
+.out{color:rgba(53,224,192,.85);font-size:.82rem}
+.cursor-block{display:inline-block;width:.55em;height:1.05em;background:var(--orange);vertical-align:-2px;margin-left:4px;animation:blinkBlock 1.1s steps(1) infinite}
+@keyframes blinkBlock{50%{opacity:0}}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{
+  position:relative;display:flex;flex-direction:column;
+  padding:1.6rem;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);
+  transition:border-color .4s,box-shadow .4s;
+  overflow:hidden;will-change:transform;
+}
+.card::before{
+  content:"";position:absolute;inset:0;opacity:0;transition:opacity .4s;pointer-events:none;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(255,154,60,.09),transparent 40%);
+}
+.card:hover::before{opacity:1}
+.card:hover{border-color:rgba(255,154,60,.45);box-shadow:var(--shadow-card)}
+.feature .icon-tile{
+  width:44px;height:44px;border-radius:12px;font-size:1.2rem;
+  background:var(--surface-2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:.2rem;transition:transform .35s var(--ease),border-color .35s;
+}
+.feature:hover .icon-tile{transform:scale(1.12) rotate(-6deg);border-color:rgba(255,154,60,.5)}
+.feature h3{font-family:var(--font-display);font-size:1.08rem;font-weight:600;letter-spacing:-.01em;margin-top:.7rem}
+.feature p{color:var(--muted);font-size:.92rem;margin-top:.4rem;flex-grow:1}
+
+/* ============ Projects ============ */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:3rem}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.icon-tile{
+  width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 24px -10px rgba(0,0,0,.5);
+  transition:transform .35s var(--ease);
+}
+.card:hover .icon-tile{transform:scale(1.1) rotate(-5deg)}
+.tile-orange{background:linear-gradient(135deg,#FFC24B,#FF7A1A)}
+.tile-violet{background:linear-gradient(135deg,#B18CFF,#7A4DFF)}
+.tile-teal{background:linear-gradient(135deg,#3EE0C4,#12A8A0)}
+.tile-gold{background:linear-gradient(135deg,#FFE08A,#E3A008)}
+.tile-blue{background:linear-gradient(135deg,#56C1FF,#2E6BFF)}
+.badge-live{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#2EE6A8}
+.badge-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#2EE6A8;animation:pulse 2.2s infinite}
+.badge-wip{display:inline-flex;align-items:center;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
+.card h3{font-family:var(--font-display);font-size:1.35rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.45rem}
+.card .domain{color:var(--muted);font-size:.85rem;margin-bottom:1rem;display:inline-flex;align-items:center;gap:.35rem;transition:color .3s}
+.card:hover .domain{color:var(--orange)}
+.card .desc{color:var(--muted);font-size:.95rem;flex-grow:1;margin-bottom:1.2rem}
+.card-tags{display:flex;flex-wrap:wrap;gap:.45rem}
+.card-tags span{
+  font-size:.75rem;font-weight:500;color:var(--muted);
+  padding:.3rem .75rem;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--border);
+  transition:color .3s,border-color .3s;
+}
+.card:hover .card-tags span:nth-child(1){color:var(--orange);border-color:rgba(255,154,60,.3)}
+.card-lg{grid-column:span 2}
+.card .domain span{display:inline-block;transition:transform .3s var(--ease)}
+.card:hover .domain span{transform:translate(3px,-3px)}
+.card-coming{border-style:dashed;justify-content:center;align-items:flex-start;background:transparent}
+.card-coming:hover{border-color:rgba(255,154,60,.5)}
+.card-coming .icon-tile{background:var(--surface-2);box-shadow:none;font-size:1.5rem}
+.dots{display:flex;gap:5px;margin:0 0 1.1rem}
+.dots span{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:dotb 1.4s infinite}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dotb{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
+.card-coming p{color:var(--muted);font-size:.95rem}
+
+/* ============ Contact form ============ */
+.form-card{
+  max-width:620px;margin:3rem auto 0;padding:2rem;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);text-align:left;
+  box-shadow:var(--shadow-card);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.1rem}
+.field label{font-size:.82rem;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.field input,.field textarea{
+  font-family:var(--font-body);font-size:.95rem;color:var(--text);
+  background:rgba(255,255,255,.04);border:1px solid var(--border-strong);border-radius:12px;
+  padding:.85rem 1rem;transition:border-color .3s,box-shadow .3s,background .3s;
+  resize:vertical;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(154,164,181,.55)}
+.field input:focus,.field textarea:focus{outline:none;border-color:rgba(255,154,60,.6);box-shadow:0 0 0 4px rgba(255,154,60,.12);background:rgba(255,255,255,.06)}
+.form-submit{width:100%;justify-content:center}
+.form-note{margin-top:1rem;font-size:.85rem;color:var(--teal);text-align:center}
+.form-note strong{color:var(--text);font-weight:600}
+
+/* ============ Polish ============ */
+.btn:active{transform:scale(.97)}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+@media(max-width:640px){.form-row{grid-template-columns:1fr}}
+
+/* ============ Contact ============ */
+.contact{
+  padding:130px 0;text-align:center;position:relative;overflow:hidden;
+}
+.contact::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(255,138,30,.1),transparent 70%);
+}
+.contact .section-title{font-size:clamp(2.2rem,5vw,3.4rem);max-width:46rem;margin-inline:auto}
+.contact .section-sub{margin-inline:auto;margin-bottom:2.5rem}
+.duck-float{position:absolute;font-size:1.7rem;opacity:.2;pointer-events:none;animation:floaty 7s ease-in-out infinite}
+.df-1{left:7%;top:24%}
+.df-2{right:9%;bottom:16%;animation-delay:-3s;font-size:2.3rem;transform:scaleX(-1)}
+.contact-email{
+  display:inline-flex;align-items:center;gap:.6rem;margin-top:1.6rem;
+  font-family:var(--font-display);font-size:clamp(1.1rem,3vw,1.5rem);font-weight:600;color:var(--muted);
+  transition:color .3s;
+}
+.contact-email:hover{color:var(--orange)}
+.contact-email svg{opacity:.6;transition:transform .3s,opacity .3s}
+.contact-email:hover svg{opacity:1;transform:translate(3px,-3px)}
+
+/* ============ Back to top ============ */
+.back-top{
+  position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;
+  background:var(--grad-orange);color:#1B0F02;z-index:60;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  box-shadow:0 12px 30px -8px rgba(255,138,30,.55);
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .35s,transform .35s,box-shadow .35s;
+}
+.back-top.show{opacity:1;visibility:visible;transform:none}
+.back-top:hover{transform:translateY(-4px);box-shadow:0 16px 38px -8px rgba(255,138,30,.7)}
+
+/* ============ Footer ============ */
+.footer{border-top:1px solid var(--border);padding:2.4rem 0;background:var(--bg-soft)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.footer .logo-text{font-size:1.05rem}
+.footer p{color:var(--muted);font-size:.88rem}
+.footer p em{font-style:normal}
+.footer .heart{display:inline-block;animation:heartBeat 1.6s infinite;transform-origin:center}
+@keyframes heartBeat{0%,100%{transform:scale(1)}12%{transform:scale(1.25)}24%{transform:scale(1)}36%{transform:scale(1.15)}}
+
+/* ============ Reveal ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-left{transform:translateX(-32px)}
+.reveal-right{transform:translateX(32px)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+.d5{transition-delay:.4s}.d6{transition-delay:.48s}.d7{transition-delay:.56s}.d8{transition-delay:.64s}
+
+/* ============ Edge ============ */
+.edge-points{display:grid;gap:1rem;margin-top:2.2rem}
+.edge-point{display:flex;gap:1.05rem;align-items:flex-start;padding:1.15rem 1.3rem;border-radius:16px;background:var(--surface);border:1px solid var(--border);transition:transform .35s var(--ease),border-color .35s}
+.edge-point:hover{transform:translateX(6px);border-color:rgba(255,154,60,.5)}
+.edge-point em{font-style:normal;font-size:1.4rem;line-height:1;flex:none;margin-top:.15rem}
+.edge-point b{font-family:var(--font-display);font-size:1.02rem;font-weight:600;display:block;margin-bottom:.2rem}
+.edge-point p{color:var(--muted);font-size:.92rem}
+
+/* ============ FX: ambient background ============ */
+body{
+  background:
+    radial-gradient(1100px 700px at 78% -10%,rgba(255,138,30,.06),transparent 60%),
+    radial-gradient(900px 650px at 6% 108%,rgba(18,168,160,.06),transparent 60%),
+    var(--bg);
+}
+.fx{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+.hidden{display:none!important}
+
+/* ============ FX: cursor glow ============ */
+.cursor-glow{
+  position:fixed;left:0;top:0;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,138,30,.10) 0%,rgba(53,224,192,.05) 38%,transparent 68%);
+  transform:translate(-50%,-50%);z-index:3;pointer-events:none;mix-blend-mode:screen;
+  opacity:0;transition:opacity .5s;
+}
+.cursor-glow.on{opacity:1}
+
+/* ============ FX: intro splash ============ */
+.intro{
+  position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;
+  flex-direction:column;gap:1.3rem;
+  background:radial-gradient(800px 520px at 50% 40%,#111825,#07090E 72%);
+}
+.intro.show{display:flex}
+.intro .intro-duck{width:110px;height:110px;filter:drop-shadow(0 18px 40px rgba(255,138,30,.35));animation:introDuck 1s var(--ease) forwards}
+.intro .intro-title{font-family:var(--font-display);font-weight:700;font-size:1.55rem;letter-spacing:-.02em;opacity:0;animation:introFade .7s .3s var(--ease) forwards}
+.intro .intro-title em{font-style:normal;background:var(--grad-orange);-webkit-background-clip:text;background-clip:text;color:transparent}
+.intro.out{animation:introOut .65s var(--ease) forwards}
+@keyframes introDuck{0%{transform:scale(.35) translateY(34px);opacity:0}60%{transform:scale(1.1) translateY(-6px);opacity:1}100%{transform:scale(1) translateY(0);opacity:1}}
+@keyframes introFade{to{opacity:1}}
+@keyframes introOut{to{opacity:0;visibility:hidden}}
+
+/* ============ FX: animated gradient card border ============ */
+@supports ((-webkit-mask-composite:xor) or (mask-composite:exclude)){
+  .card::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
+    background:conic-gradient(from 0deg,rgba(255,154,60,0) 0deg,rgba(255,154,60,.85) 90deg,rgba(53,224,192,.85) 180deg,rgba(255,154,60,0) 270deg,rgba(255,154,60,0) 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    opacity:0;pointer-events:none;transition:opacity .4s;will-change:transform;
+  }
+  .card:hover::after{opacity:1;animation:borderSpin 3.5s linear infinite}
+  @keyframes borderSpin{to{transform:rotate(360deg)}}
+}
+
+/* ============ FX: nav CTA pulse ============ */
+.nav .btn-primary{animation:ctaPulse 3s ease-in-out infinite}
+@keyframes ctaPulse{0%,100%{box-shadow:0 10px 30px -8px rgba(255,138,30,.45)}50%{box-shadow:0 12px 42px -6px rgba(255,138,30,.9)}}
+
+/* ============ FX: hero recede ============ */
+.hero-grid{will-change:transform,opacity}
+
+/* ============ FX: duck rain & confetti ============ */
+.fx-emoji{position:fixed;top:-70px;z-index:85;pointer-events:none;line-height:1;animation:duckFall linear forwards;will-change:transform}
+@keyframes duckFall{to{transform:translateY(118vh) rotate(var(--rot,40deg))}}
+.burst-piece{position:fixed;z-index:86;pointer-events:none;line-height:1;animation:burstFly var(--t,.9s) cubic-bezier(.22,1,.36,1) forwards;will-change:transform,opacity}
+@keyframes burstFly{to{transform:translate(var(--dx,0px),var(--dy,-120px)) rotate(var(--rot,0deg)) scale(.5);opacity:0}}
+
+/* ============ Legal pages ============ */
+.legal{display:none;min-height:100vh;padding:150px 0 100px}
+.legal.active{display:block}
+.legal-inner{max-width:780px;margin-inline:auto}
+.back-home{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:2rem;color:var(--orange);font-weight:600;font-size:.92rem;transition:gap .3s var(--ease)}
+.back-home:hover{gap:.9rem}
+.legal-hero{padding:2rem 2.2rem;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);margin-bottom:2rem}
+.legal-hero h1{font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:.7rem}
+.legal-hero p{color:var(--muted);margin:0}
+.legal .legal-meta{color:var(--muted);font-size:.95rem;margin-bottom:2rem;padding-left:1.1rem;border-left:3px solid rgba(255,154,60,.6)}
+.legal h2{font-family:var(--font-display);font-size:clamp(1.3rem,2.6vw,1.7rem);font-weight:700;letter-spacing:-.025em;margin:2.4rem 0 .7rem;color:var(--text)}
+.legal h2::before{content:"// ";color:var(--orange);font-family:var(--font-mono);font-weight:600;opacity:.85}
+.legal p{color:var(--muted);margin-bottom:1rem}
+.legal ul{color:var(--muted);margin:0 0 1.1rem 1.3rem;display:grid;gap:.4rem}
+.legal li::marker{color:var(--orange)}
+.legal li strong{color:var(--text);font-weight:600}
+.legal a{color:var(--orange);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,154,60,.4)}
+.legal a:hover{text-decoration-color:var(--orange)}
+
+/* ============ Footer links ============ */
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{color:var(--muted);font-size:.9rem;transition:color .3s}
+.footer-links a:hover{color:var(--orange)}
+
+/* ============ Responsive ============ */
+@media(max-width:960px){
+  .hero{padding-top:120px}
+  .hero-grid{grid-template-columns:1fr;gap:3rem}
+  .hero-visual{min-height:420px;order:2}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .services-head{grid-template-columns:1fr;gap:2.5rem}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .card-lg{grid-column:span 2}
+  .scroll-hint{display:none}
+}
+@media(max-width:700px){
+  .nav-links{
+    position:fixed;inset:76px 0 auto 0;flex-direction:column;align-items:stretch;
+    gap:.5rem;padding:1.2rem 5%;background:rgba(7,9,14,.96);
+    backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+    transform:translateY(-120%);transition:transform .4s var(--ease);z-index:49;
+  }
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a:not(.btn){padding:.9rem .4rem;font-size:1.05rem;border-bottom:1px solid var(--border)}
+  .menu-btn{display:flex}
+  .stat{padding:.2rem 1rem}
+  .features-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .card-lg{grid-column:span 1}
+  .section{padding:80px 0}
+  .hero{padding-bottom:60px}
+  .spin-badge{width:250px;height:250px}
+  .back-top{right:16px;bottom:16px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- Hidden SVG defs + logo symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="duckBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#FF8A1E"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#FF7A1A"/>
+    </linearGradient>
+  </defs>
+  <symbol id="logoMark" viewBox="0 0 64 64">
+    <!-- duck head peeking over the badge -->
+    <circle cx="46" cy="12" r="8.5" fill="url(#duckBody)"/>
+    <path d="M53.5 9.5 Q60 10.5 60 12.5 Q60 14.5 53.5 15.5 Q52.2 12.5 53.5 9.5 Z" fill="#FF6B1A"/>
+    <circle cx="49.3" cy="9.6" r="1.6" fill="#07090E"/>
+    <!-- code badge -->
+    <rect x="3" y="14" width="58" height="46" rx="15" fill="url(#badgeGrad)"/>
+    <rect x="3" y="14" width="58" height="46" rx="15" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+    <!-- </> glyph -->
+    <path d="M21 30.5 L29.5 37 L21 43.5" fill="none" stroke="#1B0F02" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M43 30.5 L34.5 37 L43 43.5" fill="none" stroke="#1B0F02" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M38.5 25 L31.5 49" fill="none" stroke="#1B0F02" stroke-width="4.2" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="noise"></div>
+<div class="progress" id="progress"></div>
+<canvas class="fx" id="fx" aria-hidden="true"></canvas>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="intro" id="intro" aria-hidden="true">
+  <svg class="intro-duck" viewBox="0 0 64 64"><use href="#logoMark"/></svg>
+  <div class="intro-title">Code<em>Quackers</em></div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="logo" aria-label="CodeQuackers home">
+      <svg class="logo-mark" viewBox="0 0 64 64"><use href="#logoMark"/></svg>
+      <span class="logo-text">Code<em>Quackers</em><span class="logo-tag">&lt;/&gt;</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="#services">What we do</a>
+      <a href="#edge">Our edge</a>
+      <a href="#work">Our work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact-form" class="btn btn-primary magnetic">Start a project</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div id="home">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <span class="glyph">{"}"}</span>
+  <span class="glyph g-teal">&lt;/&gt;</span>
+  <span class="glyph">=&gt;</span>
+  <span class="glyph g-orange">npm i</span>
+  <span class="glyph">$ _</span>
+  <span class="glyph g-teal">fn()</span>
+  <span class="glyph">#!&</span>
+  <span class="glyph g-orange">::</span>
+  <div class="container hero-grid">
+    <div>
+      <span class="pill reveal in"><span class="dot"></span> Open for new projects</span>
+      <h1 class="hero-title reveal in d1">Code that ships.<br><span class="grad">Products that fly.</span></h1>
+      <p class="hero-sub reveal in d2">CodeQuackers is an independent studio building <span class="typed"></span><span class="caret"></span> — from gym management to bullion trading, with plenty more swimming in the pond.</p>
+      <div class="hero-cta reveal in d3">
+        <a href="#work" class="btn btn-primary magnetic">See our work <span>→</span></a>
+        <a href="#contact-form" class="btn btn-ghost magnetic">Say hello</a>
+      </div>
+      <div class="hero-stats reveal in d4">
+        <div class="stat"><b data-count="5" data-suffix="+">0+</b><span>Live products</span></div>
+        <div class="stat"><b data-count="2" data-suffix=" min">0 min</b><span>Brand site build</span></div>
+        <div class="stat"><b><em>∞</em></b><span>Ideas in the pond</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal in d2">
+      <div class="spin-badge" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <defs><path id="circText" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0"/></defs>
+          <text><textPath href="#circText">QUACK · CODE · BUILD · SHIP · QUACK · CODE</textPath></text>
+        </svg>
+      </div>
+      <svg class="mascot" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M12 35 L5 28.5 L3.5 32.5 L10.5 41 Z" fill="url(#duckBody)"/>
+        <ellipse cx="26" cy="43" rx="20" ry="14" fill="url(#duckBody)"/>
+        <circle cx="44" cy="21" r="11" fill="url(#duckBody)"/>
+        <path d="M52.5 17.8 L60 21 L52.5 24.2 Z" fill="#FF6B1A" stroke="#FF6B1A" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle class="m-eye" cx="47.4" cy="18" r="1.9" fill="#07090E"/>
+        <circle cx="48" cy="17.3" r="0.65" fill="#fff"/>
+      </svg>
+      <div class="ground"></div>
+      <a class="chip chip-1" href="https://powertrack.codequackers.in/" target="_blank" rel="noopener"><em>🏋️</em> PowerTrack</a>
+      <a class="chip chip-2" href="https://bizzq.codequackers.in/" target="_blank" rel="noopener"><em>🎨</em> BizzQ</a>
+      <a class="chip chip-3" href="https://aquatrack.codequackers.in/" target="_blank" rel="noopener"><em>💧</em> AquaTrack</a>
+      <a class="chip chip-4" href="https://bullionhub.codequackers.in/" target="_blank" rel="noopener"><em>🥇</em> BullionHub</a>
+      <a class="chip chip-5" href="https://labtrack.codequackers.in/" target="_blank" rel="noopener"><em>🧪</em> LabTrack</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"><div class="wheel"></div></div><em>scroll</em></div>
+</section>
+
+<!-- ============ MARQUEE 1 ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span><i>✦</i> Gym Management <i>✦</i> Brand Websites <i>✦</i> Water Dispenser Rentals <i>✦</i> Bullion Trading <i>✦</i> Web Apps <i>✦</i> SaaS <i>✦</i> Fintech <i>✦</i> Dashboards <i>✦</i> Automations <i>✦</i> &amp; more on the way</span>
+    <span><i>✦</i> Gym Management <i>✦</i> Brand Websites <i>✦</i> Water Dispenser Rentals <i>✦</i> Bullion Trading <i>✦</i> Web Apps <i>✦</i> SaaS <i>✦</i> Fintech <i>✦</i> Dashboards <i>✦</i> Automations <i>✦</i> &amp; more on the way</span>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div>
+      <span class="eyebrow reveal">About us</span>
+      <h2 class="section-title reveal d1">The studio behind the quack.</h2>
+      <p class="section-sub reveal d2">Small team. Big launches. We design and build web applications that are fast, dependable and a little bit charming — because software should be a joy to use, not a chore.</p>
+      <div class="chips reveal d3">
+        <span>Clean code</span>
+        <span>Fast shipping</span>
+        <span>Duck energy</span>
+        <span>Mobile-first</span>
+        <span>Built to last</span>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Listen</h3>
+          <p>We start with your problem, not your stack. Every product we ship begins with understanding the people who will use it.</p>
+        </div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Build</h3>
+          <p>Ships in small, visible increments — you always know where things stand, and nothing waits months to see the light.</p>
+        </div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Launch &amp; beyond</h3>
+          <p>We stay after launch to polish, support and scale. The pond keeps growing — new products hatch here all the time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services" style="padding-top:40px">
+  <div class="orb orb-3"></div>
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <span class="eyebrow reveal">What we do</span>
+        <h2 class="section-title reveal d1">Full-stack, end to end.</h2>
+        <p class="section-sub reveal d2">From the first wireframe to the last deploy — everything your product needs to ship, scale and stay fast.</p>
+      </div>
+      <div class="terminal reveal d2">
+        <div class="term-bar">
+          <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+          <span class="term-title">codequackers@pond: ~</span>
+        </div>
+        <div class="term-body">
+          <p><span class="prompt">❯</span> <span class="cmd">quack --ship web-app</span></p>
+          <p class="out">▸ compiling pond… done in 0.42s ✓</p>
+          <p><span class="prompt">❯</span> <span class="cmd">quack --features</span></p>
+          <p class="out">▸ clean code · fast ships · ∞ ideas ✓</p>
+          <p><span class="prompt">❯</span> <span class="cmd">quack --hire</span><span class="cursor-block"></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="card feature tilt reveal">
+        <div class="icon-tile">🧩</div>
+        <h3>Custom Web Apps</h3>
+        <p>Bespoke tools built around your workflow — not the other way round.</p>
+      </div>
+      <div class="card feature tilt reveal d1">
+        <div class="icon-tile">🚀</div>
+        <h3>SaaS Platforms</h3>
+        <p>Multi-tenant products with auth, billing and admin built in from day one.</p>
+      </div>
+      <div class="card feature tilt reveal d2">
+        <div class="icon-tile">📊</div>
+        <h3>Dashboards &amp; Admin</h3>
+        <p>Real-time views of what matters: users, revenue, KPIs, logs.</p>
+      </div>
+      <div class="card feature tilt reveal d3">
+        <div class="icon-tile">🔌</div>
+        <h3>APIs &amp; Integrations</h3>
+        <p>Robust APIs that connect your product to the tools you already use.</p>
+      </div>
+      <div class="card feature tilt reveal d4">
+        <div class="icon-tile">🎨</div>
+        <h3>UI/UX Design</h3>
+        <p>Interfaces people actually enjoy using — modern, fast, mobile-first.</p>
+      </div>
+      <div class="card feature tilt reveal d5">
+        <div class="icon-tile">⚡</div>
+        <h3>Performance &amp; SEO</h3>
+        <p>Instant loads and strong rankings. Speed is a feature, not an afterthought.</p>
+      </div>
+      <div class="card feature tilt reveal d6">
+        <div class="icon-tile">🛡️</div>
+        <h3>Security &amp; Auth</h3>
+        <p>Secure by default: auth, roles, encryption and safe data handling.</p>
+      </div>
+      <div class="card feature tilt reveal d7">
+        <div class="icon-tile">🛠️</div>
+        <h3>Support &amp; Maintenance</h3>
+        <p>Monitoring, updates and new features — we stay long after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDGE ============ -->
+<section class="section" id="edge">
+  <div class="orb orb-2"></div>
+  <div class="container">
+    <div class="services-head">
+      <div>
+        <span class="eyebrow reveal">Our edge</span>
+        <h2 class="section-title reveal d1">Human strategy. <span class="grad">Machine speed.</span></h2>
+        <p class="section-sub reveal d2">We develop with professional AI tools in the loop — so your app ships ASAP, packed with every feature you asked for. No gaps. No waiting months for a stripped-down MVP.</p>
+        <div class="edge-points">
+          <div class="edge-point reveal d3">
+            <em>⚡</em>
+            <div>
+              <b>Ships ASAP</b>
+              <p>Professional AI tooling means we move from kickoff to launch in days, not months — without cutting corners.</p>
+            </div>
+          </div>
+          <div class="edge-point reveal d4">
+            <em>🧩</em>
+            <div>
+              <b>Feature-rich</b>
+              <p>Every screen, flow and edge case is built in from day one. You get the full product, not a starter kit.</p>
+            </div>
+          </div>
+          <div class="edge-point reveal d5">
+            <em>🎯</em>
+            <div>
+              <b>Zero feature gap</b>
+              <p>What you asked for is what ships — no missing pieces, no "we'll add that later".</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="terminal reveal d2">
+        <div class="term-bar">
+          <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+          <span class="term-title">codequackers@ai: ~</span>
+        </div>
+        <div class="term-body">
+          <p><span class="prompt">❯</span> <span class="cmd">quack --build app --ai</span></p>
+          <p class="out">▸ planning: every feature, zero gaps ✓</p>
+          <p><span class="prompt">❯</span> <span class="cmd">quack --check-gaps</span></p>
+          <p class="out">▸ gap analysis: 0 found ✓</p>
+          <p><span class="prompt">❯</span> <span class="cmd">quack --ship</span><span class="cursor-block"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE 2 ============ -->
+<div class="marquee alt" aria-hidden="true">
+  <div class="marquee-track">
+    <span>React <i>✦</i> Next.js <i>✦</i> TypeScript <i>✦</i> Node.js <i>✦</i> PostgreSQL <i>✦</i> Tailwind CSS <i>✦</i> Docker <i>✦</i> Stripe <i>✦</i> Cloud &amp; DevOps <i>✦</i> AI Tools <i>✦</i> &amp; always learning</span>
+    <span>React <i>✦</i> Next.js <i>✦</i> TypeScript <i>✦</i> Node.js <i>✦</i> PostgreSQL <i>✦</i> Tailwind CSS <i>✦</i> Docker <i>✦</i> Stripe <i>✦</i> Cloud &amp; DevOps <i>✦</i> AI Tools <i>✦</i> &amp; always learning</span>
+  </div>
+</div>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section" id="work" style="padding-top:40px">
+  <div class="orb orb-4"></div>
+  <div class="container">
+    <span class="eyebrow reveal">Our work</span>
+    <h2 class="section-title reveal d1">What we're building.</h2>
+    <p class="section-sub reveal d2">Live products, shipped from the pond. Each one solving a real problem for a real audience.</p>
+
+    <div class="projects-grid">
+      <a class="card tilt reveal" href="https://powertrack.codequackers.in/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="icon-tile tile-orange">💪</div>
+          <span class="badge-live">Live</span>
+        </div>
+        <h3>PowerTrack</h3>
+        <span class="domain">powertrack.codequackers.in <span>↗</span></span>
+        <p class="desc">Run your gym end-to-end: memberships, check-ins, billing and attendance dashboards — all in one place.</p>
+        <div class="card-tags"><span>Gym Management</span><span>SaaS</span><span>Dashboards</span></div>
+
+      </a>
+
+      <a class="card tilt reveal d1" href="https://bizzq.codequackers.in/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="icon-tile tile-violet">🎨</div>
+          <span class="badge-live">Live</span>
+        </div>
+        <h3>BizzQ</h3>
+        <span class="domain">bizzq.codequackers.in <span>↗</span></span>
+        <p class="desc">Spin up a polished brand website in minutes — no code, no fuss.</p>
+        <div class="card-tags"><span>Website Builder</span><span>Branding</span><span>No-Code</span></div>
+
+      </a>
+
+      <a class="card tilt reveal" href="https://aquatrack.codequackers.in/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="icon-tile tile-teal">💧</div>
+          <span class="badge-live">Live</span>
+        </div>
+        <h3>AquaTrack</h3>
+        <span class="domain">aquatrack.codequackers.in <span>↗</span></span>
+        <p class="desc">Manage water dispenser rentals from order to delivery — billing, stock and maintenance in one place.</p>
+        <div class="card-tags"><span>Rentals</span><span>Logistics</span><span>Billing</span></div>
+
+      </a>
+
+      <a class="card tilt reveal d1" href="https://bullionhub.codequackers.in/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="icon-tile tile-gold">🥇</div>
+          <span class="badge-live">Live</span>
+        </div>
+        <h3>BullionHub</h3>
+        <span class="domain">bullionhub.codequackers.in <span>↗</span></span>
+        <p class="desc">A dedicated platform for bullion dealers and jewellers to trade gold &amp; silver with confidence.</p>
+        <div class="card-tags"><span>Fintech</span><span>B2B</span><span>Trading</span></div>
+
+      </a>
+
+      <a class="card tilt reveal" href="https://labtrack.codequackers.in/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="icon-tile tile-blue">🧪</div>
+          <span class="badge-live">Live</span>
+        </div>
+        <h3>LabTrack</h3>
+        <span class="domain">labtrack.codequackers.in <span>↗</span></span>
+        <p class="desc">Run your diagnostic lab end-to-end: patients, sample tracking, results &amp; verification, NABL-style reports and GST billing — all in one place.</p>
+        <div class="card-tags"><span>Lab Management</span><span>Healthcare</span><span>Billing</span></div>
+      </a>
+
+      <div class="card card-coming reveal d2">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="icon-tile">🐣</div>
+        <h3 style="margin-top:1rem">And many more…</h3>
+        <p style="margin-top:.5rem">New products hatch from the pond all the time. Watch this space.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <span class="duck-float df-1">🦆</span>
+  <span class="duck-float df-2">🦆</span>
+  <div class="container">
+    <span class="eyebrow reveal">Contact</span>
+    <h2 class="section-title reveal d1">Got an idea? <span class="grad">Let's make it fly.</span></h2>
+    <p class="section-sub reveal d2">No offices, no phone lines — just email. Drop us a line and we'll get back to you fast.</p>
+    <div class="reveal d3">
+      <a href="#contact-form" class="btn btn-primary btn-lg magnetic">Start a conversation</a>
+    </div>
+    <div class="reveal d4">
+      <a class="contact-email" href="mailto:codequackers.in@gmail.com">
+        codequackers.in@gmail.com
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
+    </div>
+    <div class="reveal d4">
+      <div class="form-card" id="contact-form">
+        <form id="cqForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="fName">Your name</label>
+              <input id="fName" name="name" type="text" placeholder="Ada Lovelace" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="fEmail">Email</label>
+              <input id="fEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="fMsg">Tell us about your idea</label>
+            <textarea id="fMsg" name="message" rows="4" placeholder="We're building a …" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg magnetic form-submit">Send via email <span>→</span></button>
+          <p class="form-note" id="formNote" hidden>Opening your email app… if nothing happens, write to <strong>codequackers.in@gmail.com</strong>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /#home -->
+
+<!-- ============ LEGAL ============ -->
+<section class="legal" id="page-terms" aria-label="Terms of Service">
+  <div class="container legal-inner">
+    <a href="#top" class="back-home">← Back to home</a>
+    <div class="legal-hero reveal in">
+      <h1>Terms of Service</h1>
+      <p>Last updated: August 18, 2026</p>
+    </div>
+    <p class="legal-meta">Welcome to CodeQuackers. By browsing this website or engaging with our services, you agree to these terms. If you have questions, just <a href="mailto:codequackers.in@gmail.com">email us</a>.</p>
+    <h2>Who we are</h2>
+    <p>CodeQuackers is an independent software studio building web apps, SaaS platforms, dashboards and fintech tools — from gym management to bullion trading. We're reachable at <a href="mailto:codequackers.in@gmail.com">codequackers.in@gmail.com</a>.</p>
+    <h2>Our services</h2>
+    <p>We design, build, launch and maintain software products. Each client engagement is governed by its own agreement, statement of work or proposal; nothing in these terms replaces those agreements.</p>
+    <h2>Use of this website</h2>
+    <ul>
+      <li>You may use this site for lawful purposes only.</li>
+      <li>You may not copy, scrape or redistribute our content or branding without permission.</li>
+      <li>Content here is provided for information; the products we link to have their own terms.</li>
+    </ul>
+    <h2>Intellectual property</h2>
+    <p>All content, code, designs, logos and trademarks on this website belong to CodeQuackers or its clients and are protected by applicable law.</p>
+    <h2>Third-party links</h2>
+    <p>Our site links to external products and services (PowerTrack, BizzQ, AquaTrack, BullionHub, LabTrack and more). We're not responsible for the content or practices of third-party sites.</p>
+    <h2>No warranties</h2>
+    <p>This website is provided "as is", without warranties of any kind, express or implied. We work hard to keep it accurate and fast, but we can't guarantee it will always be error-free or uninterrupted.</p>
+    <h2>Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, CodeQuackers won't be liable for any indirect, incidental or consequential damages arising from your use of this website or our services.</p>
+    <h2>Changes to these terms</h2>
+    <p>We may update these terms from time to time. The latest version will always be available on this page, with the date above.</p>
+    <h2>Contact</h2>
+    <p>Questions about these terms? Write to <a href="mailto:codequackers.in@gmail.com">codequackers.in@gmail.com</a>.</p>
+  </div>
+</section>
+
+<section class="legal" id="page-privacy" aria-label="Privacy Policy">
+  <div class="container legal-inner">
+    <a href="#top" class="back-home">← Back to home</a>
+    <div class="legal-hero reveal in">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: August 18, 2026</p>
+    </div>
+    <p class="legal-meta">This policy explains what we collect, why we collect it, and how you can control it. Short version: we collect only what we need to talk to you, and we never sell your data.</p>
+    <h2>Information we collect</h2>
+    <ul>
+      <li><strong>Contact form:</strong> your name, email address and message, when you reach out to us.</li>
+      <li><strong>Basic usage data:</strong> aggregated, anonymised information such as pages viewed and approximate region, used only to understand how the site is performing.</li>
+    </ul>
+    <h2>How we use your information</h2>
+    <ul>
+      <li>To respond to your enquiries and project requests.</li>
+      <li>To improve our website and services.</li>
+      <li>To comply with legal obligations where they apply.</li>
+    </ul>
+    <h2>Cookies &amp; third parties</h2>
+    <p>We don't set tracking cookies ourselves. This site loads fonts from Google Fonts, which may collect standard connection information. Our product pages may use their own analytics, covered by their respective policies.</p>
+    <h2>Sharing your data</h2>
+    <p>We never sell your personal information. We only share it with the service providers we use to run our business (such as email and hosting), and only to the extent needed to provide our services.</p>
+    <h2>Data retention</h2>
+    <p>We keep enquiry messages only as long as needed to respond and follow up, and delete them once they're no longer useful.</p>
+    <h2>Your rights</h2>
+    <p>You can ask us to access, correct or delete your personal information at any time. Just email <a href="mailto:codequackers.in@gmail.com">codequackers.in@gmail.com</a> and we'll take care of it.</p>
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy as our practices evolve. The latest version will always be on this page, with the date above.</p>
+    <h2>Contact</h2>
+    <p>Privacy questions or requests? Reach us at <a href="mailto:codequackers.in@gmail.com">codequackers.in@gmail.com</a>.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="#top" class="logo">
+      <svg class="logo-mark" viewBox="0 0 64 64" style="width:30px;height:30px"><use href="#logoMark"/></svg>
+      <span class="logo-text">Code<em>Quackers</em><span class="logo-tag">&lt;/&gt;</span></span>
+    </a>
+    <nav class="footer-links" aria-label="Legal">
+      <a href="#/terms">Terms of Service</a>
+      <a href="#/privacy">Privacy Policy</a>
+    </nav>
+    <p>© 2026 CodeQuackers. All rights reserved.</p>
+    <p>Made with <span class="heart">🦆</span> + ☕</p>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+<script>
+const hoverable = window.matchMedia('(hover: hover)').matches;
+const reduceMotion = false;
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const DEFAULT_TITLE = document.title;
+
+// Scroll: nav state, progress bar, back-to-top
+const nav = document.getElementById('nav');
+const progress = document.getElementById('progress');
+const backTop = document.getElementById('backTop');
+const heroGrid = document.querySelector('.hero-grid');
+const onScroll = () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  backTop.classList.toggle('show', window.scrollY > 600);
+  if (heroGrid && !reduceMotion) {
+    const h = heroGrid.offsetHeight + 240;
+    const p = Math.min(window.scrollY / h, 1);
+    heroGrid.style.opacity = (1 - p * 1.2).toFixed(3);
+    heroGrid.style.transform = 'translateY(' + (window.scrollY * .22).toFixed(1) + 'px)';
+  }
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Mobile menu
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuBtn.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  menuBtn.classList.remove('open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+}));
+
+// Typewriter
+const typedEl = document.querySelector('.typed');
+const words = ['web apps', 'SaaS platforms', 'admin dashboards', 'brand websites', 'fintech tools', 'anything that ships'];
+if (typedEl) {
+  let wi = 0, ci = 0, deleting = false;
+  (function tick() {
+    const word = words[wi];
+    ci += deleting ? -1 : 1;
+    typedEl.textContent = word.slice(0, ci);
+    let delay = deleting ? 42 : 92;
+    if (!deleting && ci === word.length) { delay = 1700; deleting = true; }
+    else if (deleting && ci === 0) { deleting = false; wi = (wi + 1) % words.length; delay = 350; }
+    setTimeout(tick, delay);
+  })();
+}
+
+// Count-up stats
+const animCount = el => {
+  const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+  const dur = 1300, t0 = performance.now();
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const step = now => {
+    const p = Math.min((now - t0) / dur, 1);
+    el.textContent = Math.round(ease(p) * target) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animCount(e.target); cio.unobserve(e.target); }
+  });
+}, { threshold: .6 });
+document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+
+// Card spotlight + 3D tilt
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('pointermove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    if (hoverable && card.classList.contains('tilt')) {
+      const rx = ((e.clientY - r.top) / r.height - .5) * -9;
+      const ry = ((e.clientX - r.left) / r.width - .5) * 9;
+      card.style.transform = 'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-4px)';
+    }
+  });
+  card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+});
+
+// Magnetic buttons
+if (hoverable) {
+  document.querySelectorAll('.magnetic').forEach(b => {
+    b.addEventListener('pointermove', e => {
+      const r = b.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) * .15;
+      const dy = (e.clientY - (r.top + r.height / 2)) * .15;
+      b.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+    });
+    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+  });
+}
+
+// ---- Supercharged FX ----
+
+// Hash router: Terms & Privacy
+const homeWrap = document.getElementById('home');
+const legalPages = document.querySelectorAll('.legal');
+const route = () => {
+  const m = location.hash.match(/^#\/(terms|privacy)$/);
+  const active = m ? document.getElementById('page-' + m[1]) : null;
+  legalPages.forEach(p => p.classList.toggle('active', p === active));
+  homeWrap.classList.toggle('hidden', !!active);
+  if (active) {
+    document.title = (m[1] === 'terms' ? 'Terms of Service' : 'Privacy Policy') + ' — CodeQuackers';
+    window.scrollTo(0, 0);
+  } else {
+    document.title = DEFAULT_TITLE;
+    if (location.hash.length > 1 && !location.hash.startsWith('#/')) {
+      const t = document.querySelector(location.hash);
+      if (t) requestAnimationFrame(() => t.scrollIntoView({ behavior: 'smooth' }));
+    }
+  }
+};
+window.addEventListener('hashchange', route);
+route();
+
+// Ambient particle field
+const fxCanvas = document.getElementById('fx');
+if (fxCanvas && fxCanvas.getContext && !reduceMotion) {
+  const ctx = fxCanvas.getContext('2d');
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  let W = 0, H = 0, parts = [], rafId = null;
+  const resize = () => {
+    W = fxCanvas.width = Math.round(innerWidth * DPR);
+    H = fxCanvas.height = Math.round(innerHeight * DPR);
+    fxCanvas.style.width = innerWidth + 'px';
+    fxCanvas.style.height = innerHeight + 'px';
+    const count = Math.min(70, Math.round((innerWidth * innerHeight) / 16000));
+    parts = Array.from({ length: count }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: (Math.random() * 1.5 + .6) * DPR,
+      vx: (Math.random() - .5) * .4 * DPR,
+      vy: (Math.random() - .5) * .4 * DPR,
+      ph: Math.random() * Math.PI * 2,
+      tw: Math.random() * .02 + .006,
+      hue: Math.random() < .55 ? '255,154,60' : '53,224,192',
+      base: Math.random() * .45 + .2
+    }));
+  };
+  const LINK = 120 * DPR;
+  const tick = () => {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of parts) {
+      p.x += p.vx; p.y += p.vy; p.ph += p.tw;
+      if (p.x < -20) p.x = W + 20; else if (p.x > W + 20) p.x = -20;
+      if (p.y < -20) p.y = H + 20; else if (p.y > H + 20) p.y = -20;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + p.hue + ',' + (p.base + Math.sin(p.ph) * .18).toFixed(3) + ')';
+      ctx.fill();
+    }
+    for (let i = 0; i < parts.length; i++) {
+      for (let j = i + 1; j < parts.length; j++) {
+        const a = parts[i], b = parts[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) {
+          ctx.strokeStyle = 'rgba(255,154,60,' + ((1 - Math.sqrt(d2) / LINK) * .07).toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+    }
+    rafId = requestAnimationFrame(tick);
+  };
+  resize();
+  tick();
+  window.addEventListener('resize', resize);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { if (rafId) cancelAnimationFrame(rafId); rafId = null; }
+    else if (!rafId) tick();
+  });
+}
+
+// Cursor glow (desktop pointers only)
+const glow = document.getElementById('cursorGlow');
+if (glow && finePointer && !reduceMotion) {
+  let gx = innerWidth / 2, gy = innerHeight / 2, tx = gx, ty = gy, gRaf = null;
+  window.addEventListener('pointermove', e => {
+    tx = e.clientX; ty = e.clientY;
+    if (!glow.classList.contains('on')) glow.classList.add('on');
+  }, { passive: true });
+  (function glowLoop() {
+    gx += (tx - gx) * .14; gy += (ty - gy) * .14;
+    glow.style.transform = 'translate(' + (gx - 260).toFixed(1) + 'px,' + (gy - 260).toFixed(1) + 'px)';
+    gRaf = requestAnimationFrame(glowLoop);
+  })();
+}
+
+// Intro splash (once per session)
+const introEl = document.getElementById('intro');
+if (introEl && !reduceMotion) {
+  let seen = false;
+  try { seen = !!sessionStorage.getItem('cq_intro'); sessionStorage.setItem('cq_intro', '1'); } catch (e) {}
+  if (!seen) {
+    introEl.classList.add('show');
+    setTimeout(() => introEl.classList.add('out'), 1800);
+    setTimeout(() => introEl.classList.remove('show', 'out'), 2600);
+  }
+}
+
+// Scramble section titles
+const titleScramble = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.scrambled) { scrambleTitle(e.target); titleScramble.unobserve(e.target); }
+  });
+}, { threshold: .35 });
+document.querySelectorAll('.section-title').forEach(el => { if (!el.children.length) titleScramble.observe(el); });
+function scrambleTitle(el) {
+  if (reduceMotion) return;
+  el.dataset.scrambled = '1';
+  const text = el.textContent;
+  const chars = '!<>-_\\/[]{}—=+*^?#';
+  const total = Math.max(10, Math.min(18, text.length));
+  let frame = 0;
+  const timer = setInterval(() => {
+    frame++;
+    let out = '';
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      out += c === ' ' ? ' ' : (frame >= Math.floor((i / text.length) * total) ? c : chars[Math.floor(Math.random() * chars.length)]);
+    }
+    el.textContent = out;
+    if (frame >= total) { clearInterval(timer); el.textContent = text; }
+  }, 26);
+}
+
+// Easter egg: type "quack" for a duck rain
+let quackBuf = '';
+const duckEmojis = ['🦆', '🐤', '🦢', '🥚'];
+window.addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key.length > 1) return;
+  quackBuf = (quackBuf + e.key.toLowerCase()).slice(-5);
+  if (quackBuf === 'quack') { quackBuf = ''; duckRain(); }
+});
+function duckRain() {
+  if (reduceMotion) return;
+  for (let i = 0; i < 18; i++) {
+    const d = document.createElement('span');
+    d.className = 'fx-emoji';
+    d.textContent = duckEmojis[Math.floor(Math.random() * duckEmojis.length)];
+    d.style.left = (Math.random() * 96 + 2) + 'vw';
+    d.style.fontSize = (Math.random() * 24 + 16) + 'px';
+    d.style.setProperty('--rot', (Math.random() * 180 - 90) + 'deg');
+    d.style.animationDuration = (Math.random() * 1.6 + 1.8) + 's';
+    d.style.animationDelay = (Math.random() * .5) + 's';
+    document.body.appendChild(d);
+    d.addEventListener('animationend', () => d.remove());
+  }
+}
+
+// Confetti burst
+function burstConfetti(origin) {
+  if (reduceMotion) return;
+  const r = origin.getBoundingClientRect();
+  const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+  const bits = ['🦆', '✦', '✨', '●', '★'];
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('span');
+    p.className = 'burst-piece';
+    p.textContent = bits[Math.floor(Math.random() * bits.length)];
+    p.style.left = cx + 'px';
+    p.style.top = cy + 'px';
+    p.style.fontSize = (Math.random() * 14 + 12) + 'px';
+    const ang = Math.random() * Math.PI * 2;
+    const dist = Math.random() * 160 + 60;
+    p.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(0) + 'px');
+    p.style.setProperty('--dy', (Math.sin(ang) * dist - 70).toFixed(0) + 'px');
+    p.style.setProperty('--rot', (Math.random() * 540 - 270).toFixed(0) + 'deg');
+    p.style.setProperty('--t', (Math.random() * .5 + .7).toFixed(2) + 's');
+    document.body.appendChild(p);
+    p.addEventListener('animationend', () => p.remove());
+  }
+}
+
+// Contact form → compose email
+const cqForm = document.getElementById('cqForm');
+cqForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const name = f.name.value.trim();
+  const email = f.email.value.trim();
+  const msg = f.message.value.trim();
+  const subject = encodeURIComponent('Project inquiry from ' + (name || 'someone'));
+  const body = encodeURIComponent('Hi CodeQuackers,\n\n' + msg + '\n\n— ' + (name || '—') + (email ? ' (' + email + ')' : ''));
+  const note = document.getElementById('formNote');
+  note.hidden = false;
+  burstConfetti(cqForm.querySelector('.form-submit'));
+  window.location.href = 'mailto:codequackers.in@gmail.com?subject=' + subject + '&body=' + body;
+});
+</script>
+</body>
+</html>
