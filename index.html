@@ -6,7 +6,23 @@
 <title>CodeQuackers — Code that ships. Products that fly.</title>
 <meta name="description" content="CodeQuackers is an independent software studio building AI-accelerated web apps, SaaS platforms, dashboards and fintech tools — from gym management to bullion trading, and more swimming in the pond." />
 <meta name="theme-color" content="#07090E" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='46' cy='12' r='8.5' fill='%23FFB02E'/%3E%3Cpath d='M53.5 9.5 Q60 10.5 60 12.5 Q60 14.5 53.5 15.5 Q52.2 12.5 53.5 9.5Z' fill='%23FF7A1A'/%3E%3Ccircle cx='49.3' cy='9.6' r='1.6' fill='%2307090E'/%3E%3Crect x='3' y='14' width='58' height='46' rx='15' fill='%23FF9A3C'/%3E%3Cpath d='M21 30.5 L29.5 37 L21 43.5' fill='none' stroke='%231B0F02' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M43 30.5 L34.5 37 L43 43.5' fill='none' stroke='%231B0F02' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M38.5 25 L31.5 49' fill='none' stroke='%231B0F02' stroke-width='4.2' stroke-linecap='round'/%3E%3C/svg%3E" />
+<script>document.documentElement.classList.add('js');</script>
+<link rel="canonical" href="https://codequackers.in/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CodeQuackers" />
+<meta property="og:url" content="https://codequackers.in/" />
+<meta property="og:title" content="CodeQuackers — Code that ships. Products that fly." />
+<meta property="og:description" content="Independent software studio building web apps, SaaS platforms, dashboards and fintech tools. Seven products live in production." />
+<meta property="og:image" content="https://codequackers.in/og-image.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="CodeQuackers — Code that ships. Products that fly." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CodeQuackers — Code that ships. Products that fly." />
+<meta name="twitter:description" content="Independent software studio building web apps, SaaS platforms, dashboards and fintech tools." />
+<meta name="twitter:image" content="https://codequackers.in/og-image.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='46' cy='12' r='8.5' fill='%23FFB02E'/%3E%3Cpath d='M53.5 9.5 Q60 10.5 60 12.5 Q60 14.5 53.5 15.5 Q52.2 12.5 53.5 9.5Z' fill='%23FF7A1A'/%3E%3Ccircle cx='49.3' cy='9.6' r='1.6' fill='%2307090E'/%3E%3Crect x='3' y='14' width='58' height='46' rx='15' fill='%23FF9A3C'/%3E%3Cpath d='M22 29 L13 37 L22 45' fill='none' stroke='%231B0F02' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M42 29 L51 37 L42 45' fill='none' stroke='%231B0F02' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M34.5 27 L29.5 47' fill='none' stroke='%231B0F02' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
@@ -114,10 +130,6 @@ section{position:relative}
 .logo:hover .logo-mark{transform:rotate(-8deg) scale(1.06)}
 .logo-text{font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
 .logo-text em{font-style:normal;background:var(--grad-orange);-webkit-background-clip:text;background-clip:text;color:transparent}
-.logo-tag{
-  font-family:var(--font-mono);font-size:.58em;font-weight:600;color:rgba(255,154,60,.85);
-  margin-left:.15em;display:inline-block;transform:translateY(-.2em);
-}
 .nav-links{display:flex;align-items:center;gap:2rem}
 .nav-links a:not(.btn){
   font-size:.92rem;font-weight:500;color:var(--muted);position:relative;transition:color .25s;
@@ -206,7 +218,7 @@ section{position:relative}
 }
 @keyframes gradMove{to{background-position:100% 50%}}
 .hero-sub{color:var(--muted);font-size:1.08rem;max-width:35rem;margin-bottom:2.2rem}
-.typed{color:var(--orange);font-weight:600}
+.typed{color:var(--orange);font-weight:600;white-space:nowrap}
 .caret{display:inline-block;width:2px;height:1.1em;background:var(--orange);margin-left:2px;vertical-align:-2px;animation:caretBlink 1s steps(1) infinite}
 @keyframes caretBlink{50%{opacity:0}}
 .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:2.8rem}
@@ -256,11 +268,14 @@ section{position:relative}
 }
 .chip:hover{border-color:rgba(255,154,60,.65);box-shadow:0 14px 34px -12px rgba(255,138,30,.35)}
 .chip em{font-style:normal;font-size:1.05rem;line-height:1}
+.chip img{border-radius:4px;flex-shrink:0}
 .chip-1{top:6%;left:4%}
 .chip-2{top:14%;right:0;animation-delay:-2s}
 .chip-3{bottom:16%;left:2%;animation-delay:-4s}
 .chip-4{bottom:6%;right:6%;animation-delay:-1.5s}
 .chip-5{top:46%;right:3%;animation-delay:-2.5s}
+.chip-6{top:38%;left:0;animation-delay:-3.5s}
+.chip-7{top:6%;left:39%;animation-delay:-4.5s}
 
 .scroll-hint{
   position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
@@ -281,9 +296,11 @@ section{position:relative}
 
 /* ============ Marquee ============ */
 .marquee{position:relative;border-block:1px solid var(--border);background:var(--bg-soft);overflow:hidden;padding:1.15rem 0}
-.marquee-track{display:flex;gap:3rem;width:max-content;animation:scroll 32s linear infinite}
+.marquee-track{display:flex;width:max-content;animation:scroll 32s linear infinite}
 .marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-track span{display:flex;align-items:center;gap:3rem;font-family:var(--font-display);font-weight:600;font-size:1.05rem;letter-spacing:.02em;color:var(--muted);white-space:nowrap}
+/* padding-right (not a flex gap) carries the seam spacing: with a gap, -50% is short by half
+   a gap and the loop visibly jumps every cycle. */
+.marquee-track span{display:flex;align-items:center;gap:3rem;padding-right:3rem;font-family:var(--font-display);font-weight:600;font-size:1.05rem;letter-spacing:.02em;color:var(--muted);white-space:nowrap}
 .marquee-track i{font-style:normal;color:var(--orange)}
 @keyframes scroll{to{transform:translateX(-50%)}}
 .marquee.alt{background:transparent;border-block:none}
@@ -291,8 +308,10 @@ section{position:relative}
 .marquee.alt .marquee-track span{font-family:var(--font-mono);font-size:.92rem;letter-spacing:.04em;color:rgba(154,164,181,.75)}
 .marquee.alt .marquee-track i{color:var(--teal)}
 .marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
-.marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--bg-soft),transparent)}
+.marquee::after{right:0;background:linear-gradient(-90deg,var(--bg-soft),transparent)}
+.marquee.alt::before{background:linear-gradient(90deg,var(--bg),transparent)}
+.marquee.alt::after{background:linear-gradient(-90deg,var(--bg),transparent)}
 
 /* ============ Sections ============ */
 .section{padding:110px 0}
@@ -351,7 +370,8 @@ section{position:relative}
 .term-dot.r{background:#FF5F57}.term-dot.y{background:#FEBC2E}.term-dot.g{background:#28C840}
 .term-title{margin-left:.6rem;color:var(--muted);font-size:.74rem}
 .term-body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.45rem}
-.term-body p{opacity:0;transform:translateX(-8px)}
+.term-body p{}
+html.js .term-body p{opacity:0;transform:translateX(-8px)}
 .terminal.in .term-body p{animation:termIn .55s var(--ease) forwards}
 .terminal.in .term-body p:nth-child(1){animation-delay:.15s}
 .terminal.in .term-body p:nth-child(2){animation-delay:.85s}
@@ -380,6 +400,7 @@ section{position:relative}
 .card:hover{border-color:rgba(255,154,60,.45);box-shadow:var(--shadow-card)}
 .feature .icon-tile{
   width:44px;height:44px;border-radius:12px;font-size:1.2rem;
+  overflow:hidden;
   background:var(--surface-2);border:1px solid var(--border);
   display:flex;align-items:center;justify-content:center;
   margin-bottom:.2rem;transition:transform .35s var(--ease),border-color .35s;
@@ -393,15 +414,12 @@ section{position:relative}
 .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
 .icon-tile{
   width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;
+  overflow:hidden;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 10px 24px -10px rgba(0,0,0,.5);
   transition:transform .35s var(--ease);
 }
 .card:hover .icon-tile{transform:scale(1.1) rotate(-5deg)}
-.tile-orange{background:linear-gradient(135deg,#FFC24B,#FF7A1A)}
-.tile-violet{background:linear-gradient(135deg,#B18CFF,#7A4DFF)}
-.tile-teal{background:linear-gradient(135deg,#3EE0C4,#12A8A0)}
-.tile-gold{background:linear-gradient(135deg,#FFE08A,#E3A008)}
-.tile-blue{background:linear-gradient(135deg,#56C1FF,#2E6BFF)}
+.tile-orange,.tile-violet,.tile-teal,.tile-gold,.tile-blue{background:transparent}
 .badge-live{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#2EE6A8}
 .badge-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#2EE6A8;animation:pulse 2.2s infinite}
 .badge-wip{display:inline-flex;align-items:center;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
@@ -453,6 +471,16 @@ section{position:relative}
 /* ============ Polish ============ */
 .btn:active{transform:scale(.97)}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+
+/* ============ Skip link ============ */
+.skip-link{
+  position:fixed;left:1rem;top:-4rem;z-index:120;
+  padding:.7rem 1.15rem;border-radius:0 0 12px 12px;
+  background:var(--grad-orange);color:#1B0F02;font-weight:600;font-size:.9rem;
+  box-shadow:0 10px 30px -10px rgba(255,138,30,.6);
+  transition:top .25s var(--ease);
+}
+.skip-link:focus{top:0}
 @media(max-width:640px){.form-row{grid-template-columns:1fr}}
 
 /* ============ Contact ============ */
@@ -490,7 +518,7 @@ section{position:relative}
 .back-top:hover{transform:translateY(-4px);box-shadow:0 16px 38px -8px rgba(255,138,30,.7)}
 
 /* ============ Footer ============ */
-.footer{border-top:1px solid var(--border);padding:2.4rem 0;background:var(--bg-soft)}
+.footer{border-top:1px solid var(--border);padding:2.4rem 0 5.5rem;background:var(--bg-soft)}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
 .footer .logo-text{font-size:1.05rem}
 .footer p{color:var(--muted);font-size:.88rem}
@@ -499,10 +527,12 @@ section{position:relative}
 @keyframes heartBeat{0%,100%{transform:scale(1)}12%{transform:scale(1.25)}24%{transform:scale(1)}36%{transform:scale(1.15)}}
 
 /* ============ Reveal ============ */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+/* Scoped to html.js so the content is never hidden when JavaScript doesn't run. */
+.reveal{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+html.js .reveal:not(.in){opacity:0;transform:translateY(26px)}
+html.js .reveal-left:not(.in){transform:translateX(-32px)}
+html.js .reveal-right:not(.in){transform:translateX(32px)}
 .reveal.in{opacity:1;transform:none}
-.reveal-left{transform:translateX(-32px)}
-.reveal-right{transform:translateX(32px)}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 .d5{transition-delay:.4s}.d6{transition-delay:.48s}.d7{transition-delay:.56s}.d8{transition-delay:.64s}
 
@@ -549,16 +579,23 @@ body{
 @keyframes introOut{to{opacity:0;visibility:hidden}}
 
 /* ============ FX: animated gradient card border ============ */
+/* The gradient ANGLE is animated, not the pseudo-element. Rotating the element swings the
+   ring outside the card box, where the card's overflow:hidden clips it — leaving diagonal
+   lines slicing across the interior on any non-square card. Animating the angle keeps the
+   ring exactly on the outline. --cq-angle is declared inline so the background stays valid
+   even where @property is unsupported (it then degrades to a static, un-rotating ring). */
+@property --cq-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
 @supports ((-webkit-mask-composite:xor) or (mask-composite:exclude)){
   .card::after{
     content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;
-    background:conic-gradient(from 0deg,rgba(255,154,60,0) 0deg,rgba(255,154,60,.85) 90deg,rgba(53,224,192,.85) 180deg,rgba(255,154,60,0) 270deg,rgba(255,154,60,0) 360deg);
+    --cq-angle:0deg;
+    background:conic-gradient(from var(--cq-angle),rgba(255,154,60,0) 0deg,rgba(255,154,60,.85) 90deg,rgba(53,224,192,.85) 180deg,rgba(255,154,60,0) 270deg,rgba(255,154,60,0) 360deg);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;mask-composite:exclude;
-    opacity:0;pointer-events:none;transition:opacity .4s;will-change:transform;
+    opacity:0;pointer-events:none;transition:opacity .4s;
   }
   .card:hover::after{opacity:1;animation:borderSpin 3.5s linear infinite}
-  @keyframes borderSpin{to{transform:rotate(360deg)}}
+  @keyframes borderSpin{to{--cq-angle:360deg}}
 }
 
 /* ============ FX: nav CTA pulse ============ */
@@ -573,6 +610,60 @@ body{
 @keyframes duckFall{to{transform:translateY(118vh) rotate(var(--rot,40deg))}}
 .burst-piece{position:fixed;z-index:86;pointer-events:none;line-height:1;animation:burstFly var(--t,.9s) cubic-bezier(.22,1,.36,1) forwards;will-change:transform,opacity}
 @keyframes burstFly{to{transform:translate(var(--dx,0px),var(--dy,-120px)) rotate(var(--rot,0deg)) scale(.5);opacity:0}}
+
+/* ============ FX: the pond ============ */
+/* The ducks sit behind .pond-clip, whose bottom edge is the waterline, so their
+   lower half is genuinely clipped rather than masked — they read as half-in-water. */
+.pond{position:fixed;left:0;right:0;bottom:0;height:84px;z-index:45;pointer-events:none}
+.pond-clip{position:absolute;left:0;right:0;bottom:12px;height:54px;overflow:hidden}
+.pond-water{
+  position:absolute;left:0;right:0;bottom:0;height:12px;
+  background:linear-gradient(180deg,rgba(53,224,192,.16),rgba(18,168,160,.05) 45%,rgba(7,9,14,.55));
+}
+.pond-water::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(53,224,192,.5),transparent);
+}
+.pond-duck{
+  position:absolute;left:0;bottom:-14px;
+  pointer-events:auto;cursor:pointer;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.45));
+  will-change:transform;
+}
+.pond-duck svg{width:100%;height:100%;display:block}
+.pond-duck-in{width:100%;height:100%;transform-origin:50% 82%}
+.pond-duck-in.flip{animation:duckFlip .9s var(--ease)}
+.pond-duck-in.spin{animation:duckSpin .9s var(--ease)}
+.pond-duck-in.dive{animation:duckDive 1s var(--ease)}
+.pond-duck-in.squash{animation:duckSquash .8s var(--ease)}
+.pond-duck-in.hop{animation:duckHop .62s var(--ease)}
+@keyframes duckFlip{to{transform:rotate(-360deg)}}
+@keyframes duckSpin{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}
+@keyframes duckDive{0%,100%{transform:translateY(0) scaleY(1)}45%{transform:translateY(22px) scaleY(.72)}}
+@keyframes duckSquash{0%,100%{transform:scale(1,1)}40%{transform:scale(1.3,.7)}70%{transform:scale(.9,1.15)}}
+@keyframes duckHop{0%,100%{transform:translateY(0) rotate(0deg)}40%{transform:translateY(-30px) rotate(-12deg)}}
+.pond-bubbles{position:absolute;inset:0;pointer-events:none}
+.pond-bubble{
+  position:absolute;bottom:0;left:0;transform:translate(-50%,0);
+  padding:.34rem .62rem;border-radius:10px;
+  max-width:min(230px,72vw);white-space:normal;text-align:center;
+  background:rgba(13,17,24,.94);border:1px solid rgba(255,154,60,.45);
+  color:var(--text);font-size:.72rem;font-weight:600;line-height:1.3;
+  opacity:0;box-shadow:0 12px 26px -14px rgba(0,0,0,.8);
+  transition:opacity .22s var(--ease),transform .22s var(--ease);
+}
+.pond-bubble.show{opacity:1;transform:translate(-50%,-7px)}
+.pond-bubble::after{
+  content:"";position:absolute;left:var(--tail,50%);bottom:-4.5px;width:8px;height:8px;
+  margin-left:-4px;transform:rotate(45deg);
+  background:rgba(13,17,24,.94);
+  border-right:1px solid rgba(255,154,60,.45);border-bottom:1px solid rgba(255,154,60,.45);
+}
+.pond-feather{
+  position:fixed;z-index:56;pointer-events:none;font-size:15px;line-height:1;
+  animation:featherFall 1.5s var(--ease) forwards;
+}
+@keyframes featherFall{to{transform:translate(var(--fx,0px),90px) rotate(var(--fr,180deg));opacity:0}}
 
 /* ============ Legal pages ============ */
 .legal{display:none;min-height:100vh;padding:150px 0 100px}
@@ -630,9 +721,75 @@ body{
   .back-top{right:16px;bottom:16px}
 }
 
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+
+  /* Stop every looping / decorative animation */
+  .orb,.glyph,.spin-badge,.mascot,.chip,.ground,.hero-visual::before,
+  .pill .dot,.badge-live::before,.dots span,.caret,.cursor-block,.m-eye,.grad,
+  .marquee-track,.scroll-hint .wheel,.scroll-hint em,.heart,.duck-float,
+  .nav .btn-primary,.card:hover::after,.intro,.intro-duck,.intro-title{
+    animation:none!important;
+  }
+  .intro{display:none!important}
+  .glyph,.caret,.btn-primary::after{display:none}
+
+  /* Terminal copy is normally revealed by an animation — show it outright instead */
+  .term-body p{opacity:1!important;transform:none!important;animation:none!important}
+
+  /* The marquee can no longer scroll, so wrap it instead of clipping it */
+  .marquee-track{width:auto;flex-wrap:wrap;justify-content:center;gap:.6rem 1.4rem}
+  .marquee-track span{white-space:normal;flex-wrap:wrap;justify-content:center;gap:.6rem 1.4rem;padding-right:0;font-size:.98rem}
+  .marquee-track span:last-child{display:none}
+  .marquee::before,.marquee::after{display:none}
+
+  /* Hover affordances stay, but nothing moves or spins */
+  .card:hover::after{opacity:1}
+  .card::after{transition:none}
+
+  /* Revealed content is simply visible */
+  .reveal,.reveal-left,.reveal-right{
+    opacity:1!important;transform:none!important;transition:none!important;
+  }
+
+  /* No easing or movement on interactive elements (nav-links keeps its transform) */
+  .btn,.back-top,.logo-mark,.icon-tile,.step,.step-num,.edge-point,.chips span,
+  .card,.card .domain span{
+    transition:none!important;transform:none!important;
+  }
+  .nav-links{transition:none!important}
+  .progress{transition:none}
+
+  /* The pond keeps its ducks, but they stop swimming and never do a trick */
+  .pond-duck-in,.pond-bubble{animation:none!important;transition:none!important}
+  .pond-feather{display:none}
+}
+
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CodeQuackers",
+  "alternateName": "Code Quackers",
+  "url": "https://codequackers.in/",
+  "email": "codequackers.in@gmail.com",
+  "description": "Independent software studio building web apps, SaaS platforms, dashboards and fintech tools.",
+  "logo": "https://codequackers.in/og-image.png",
+  "knowsAbout": [
+    "Web application development",
+    "SaaS platforms",
+    "Admin dashboards",
+    "Fintech software",
+    "API integration"
+  ]
+}
+</script>
 </head>
 <body>
+
+<a class="skip-link" href="#top">Skip to content</a>
 
 <!-- Hidden SVG defs + logo symbol -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -655,16 +812,29 @@ body{
     <rect x="3" y="14" width="58" height="46" rx="15" fill="url(#badgeGrad)"/>
     <rect x="3" y="14" width="58" height="46" rx="15" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
     <!-- </> glyph -->
-    <path d="M21 30.5 L29.5 37 L21 43.5" fill="none" stroke="#1B0F02" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M43 30.5 L34.5 37 L43 43.5" fill="none" stroke="#1B0F02" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M38.5 25 L31.5 49" fill="none" stroke="#1B0F02" stroke-width="4.2" stroke-linecap="round"/>
+    <path d="M22 29 L13 37 L22 45" fill="none" stroke="#1B0F02" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M42 29 L51 37 L42 45" fill="none" stroke="#1B0F02" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M34.5 27 L29.5 47" fill="none" stroke="#1B0F02" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+  <!-- plain duck, reused by the pond at the bottom of the screen -->
+  <symbol id="duckSprite" viewBox="0 0 64 64">
+    <path d="M12 35 L5 28.5 L3.5 32.5 L10.5 41 Z" fill="url(#duckBody)"/>
+    <ellipse cx="26" cy="43" rx="20" ry="14" fill="url(#duckBody)"/>
+    <circle cx="44" cy="21" r="11" fill="url(#duckBody)"/>
+    <path d="M52.5 17.8 L60 21 L52.5 24.2 Z" fill="#FF6B1A" stroke="#FF6B1A" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="47.4" cy="18" r="1.9" fill="#07090E"/>
+    <circle cx="48" cy="17.3" r="0.65" fill="#fff"/>
   </symbol>
 </svg>
 
 <div class="noise"></div>
 <div class="progress" id="progress"></div>
 <canvas class="fx" id="fx" aria-hidden="true"></canvas>
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<!-- Cursor glow (the light that follows the pointer) is disabled for now.
+     To re-enable, uncomment the line below — the .cursor-glow CSS and the
+     startGlow/stopGlow JS are still in place, and the script skips the effect
+     entirely when this element is missing. -->
+<!-- <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div> -->
 <div class="intro" id="intro" aria-hidden="true">
   <svg class="intro-duck" viewBox="0 0 64 64"><use href="#logoMark"/></svg>
   <div class="intro-title">Code<em>Quackers</em></div>
@@ -675,7 +845,7 @@ body{
   <div class="container nav-inner">
     <a href="#top" class="logo" aria-label="CodeQuackers home">
       <svg class="logo-mark" viewBox="0 0 64 64"><use href="#logoMark"/></svg>
-      <span class="logo-text">Code<em>Quackers</em><span class="logo-tag">&lt;/&gt;</span></span>
+      <span class="logo-text">Code<em>Quackers</em></span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a href="#services">What we do</a>
@@ -703,7 +873,7 @@ body{
   <span class="glyph g-orange">npm i</span>
   <span class="glyph">$ _</span>
   <span class="glyph g-teal">fn()</span>
-  <span class="glyph">#!&</span>
+  <span class="glyph">#!&amp;</span>
   <span class="glyph g-orange">::</span>
   <div class="container hero-grid">
     <div>
@@ -715,8 +885,8 @@ body{
         <a href="#contact-form" class="btn btn-ghost magnetic">Say hello</a>
       </div>
       <div class="hero-stats reveal in d4">
-        <div class="stat"><b data-count="5" data-suffix="+">0+</b><span>Live products</span></div>
-        <div class="stat"><b data-count="2" data-suffix=" min">0 min</b><span>Brand site build</span></div>
+        <div class="stat"><b data-count="7" data-suffix="+">7+</b><span>Live products</span></div>
+        <div class="stat"><b data-count="2" data-suffix=" min">2 min</b><span>Brand site build</span></div>
         <div class="stat"><b><em>∞</em></b><span>Ideas in the pond</span></div>
       </div>
     </div>
@@ -736,11 +906,13 @@ body{
         <circle cx="48" cy="17.3" r="0.65" fill="#fff"/>
       </svg>
       <div class="ground"></div>
-      <a class="chip chip-1" href="https://powertrack.codequackers.in/" target="_blank" rel="noopener"><em>🏋️</em> PowerTrack</a>
-      <a class="chip chip-2" href="https://bizzq.codequackers.in/" target="_blank" rel="noopener"><em>🎨</em> BizzQ</a>
-      <a class="chip chip-3" href="https://aquatrack.codequackers.in/" target="_blank" rel="noopener"><em>💧</em> AquaTrack</a>
-      <a class="chip chip-4" href="https://bullionhub.codequackers.in/" target="_blank" rel="noopener"><em>🥇</em> BullionHub</a>
-      <a class="chip chip-5" href="https://labtrack.codequackers.in/" target="_blank" rel="noopener"><em>🧪</em> LabTrack</a>
+      <a class="chip chip-1" href="https://powertrack.codequackers.in/" target="_blank" rel="noopener"><img src="https://powertrack.codequackers.in/icons/icon-192.png" alt="" width="18" height="18" style="border-radius:4px"> PowerTrack</a>
+      <a class="chip chip-2" href="https://bizzq.codequackers.in/" target="_blank" rel="noopener"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%20fill%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22qG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%237c3aed%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23a78bfa%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%232dd4bf%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2236%22%20r%3D%2226%22%20stroke%3D%22url(%23qG)%22%20stroke-width%3D%225.5%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M57%2053%20L66%2066%22%20stroke%3D%22url(%23qG)%22%20stroke-width%3D%225.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2236%22%20r%3D%228%22%20fill%3D%22url(%23qG)%22%20opacity%3D%220.6%22%2F%3E%3C%2Fsvg%3E" alt="" width="18" height="18"> BizzQ</a>
+      <a class="chip chip-3" href="https://aquatrack.codequackers.in/" target="_blank" rel="noopener"><img src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2064%2064%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a1%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338BDF8%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2306B6D4%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230284C7%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a2%22%20x1%3D%220%25%22%20y1%3D%22100%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334D399%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322D3EE%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2360A5FA%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M32%204%20C32%204%2012%2025.5%2012%2039.5%20C12%2050.5%2021%2059.5%2032%2059.5%20C43%2059.5%2052%2050.5%2052%2039.5%20C52%2025.5%2032%204%2032%204%20Z%22%20fill%3D%22url(%23a1)%22%2F%3E%3Cpath%20d%3D%22M32%2015%20C32%2015%2020%2028.5%2020%2038.5%20C20%2045%2025.5%2050%2032%2050%20C38.5%2050%2044%2045%2044%2038.5%20C44%2028.5%2032%2015%2032%2015%20Z%22%20fill%3D%22%23080D18%22%20opacity%3D%220.3%22%2F%3E%3Cpath%20d%3D%22M22%2041.5%20C22%2034.5%2027%2027.5%2032%2020.5%20C37%2027.5%2042%2034.5%2042%2041.5%20C42%2047%2037.5%2050.5%2032%2050.5%20C26.5%2050.5%2022%2047%2022%2041.5%20Z%22%20fill%3D%22url(%23a2)%22%2F%3E%3Cpath%20d%3D%22M32%208%20C32%208%2016%2026.5%2016%2038%20C16%2041.5%2017.5%2044.5%2020%2046.5%20C18%2043.5%2017%2040%2017%2037.5%20C17%2027.5%2032%2010.5%2032%208%20Z%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%220.65%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2239%22%20r%3D%224%22%20fill%3D%22%23FFFFFF%22%2F%3E%3C%2Fsvg%3E" alt="" width="18" height="18"> AquaTrack</a>
+      <a class="chip chip-4" href="https://bullionhub.codequackers.in/" target="_blank" rel="noopener"><svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false"><rect width="18" height="18" rx="4" fill="#1a1a2e"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#f59e0b" font-family="Space Grotesk,system-ui,sans-serif" font-weight="700" font-size="7">BH</text></svg> BullionHub</a>
+      <a class="chip chip-5" href="https://labtrack.codequackers.in/" target="_blank" rel="noopener"><img src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2064%2064%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230d9488%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M27%2013v11L15%2040a7%207%200%200%200%206%2010.5h22a7%207%200%200%200%206-10.5L37%2024V13%22%2F%3E%3Cpath%20d%3D%22M21%2013h22%22%2F%3E%3Cpath%20d%3D%22M22%2038c7%203.5%2013%203.5%2020%200%22%20stroke-opacity%3D%22.85%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="" width="18" height="18"> LabTrack</a>
+      <a class="chip chip-6" href="https://reservo.codequackers.in/" target="_blank" rel="noopener"><img src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%226%22%20fill%3D%22%2310b981%22%2F%3E%3Cpath%20d%3D%22M12%204a7%207%200%2000-3.5%2013.06V21h2v-3h3v3h2v-3.94A7%207%200%200012%204Zm0%202a5%205%200%20010%2010%205%205%200%20010-10Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="" width="18" height="18"> Reservo</a>
+      <a class="chip chip-7" href="https://zaiqo.codequackers.in/" target="_blank" rel="noopener"><img src="https://zaiqo.codequackers.in/icons/icon-192.png" alt="" width="18" height="18" style="border-radius:4px"> Zaiqo</a>
     </div>
   </div>
   <div class="scroll-hint"><div class="mouse"><div class="wheel"></div></div><em>scroll</em></div>
@@ -749,8 +921,8 @@ body{
 <!-- ============ MARQUEE 1 ============ -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span><i>✦</i> Gym Management <i>✦</i> Brand Websites <i>✦</i> Water Dispenser Rentals <i>✦</i> Bullion Trading <i>✦</i> Web Apps <i>✦</i> SaaS <i>✦</i> Fintech <i>✦</i> Dashboards <i>✦</i> Automations <i>✦</i> &amp; more on the way</span>
-    <span><i>✦</i> Gym Management <i>✦</i> Brand Websites <i>✦</i> Water Dispenser Rentals <i>✦</i> Bullion Trading <i>✦</i> Web Apps <i>✦</i> SaaS <i>✦</i> Fintech <i>✦</i> Dashboards <i>✦</i> Automations <i>✦</i> &amp; more on the way</span>
+    <span><i>✦</i> Gym Management <i>✦</i> Brand Websites <i>✦</i> Water Dispenser Rentals <i>✦</i> Bullion Trading <i>✦</i> Booking Platforms <i>✦</i> Web Apps <i>✦</i> SaaS <i>✦</i> Fintech <i>✦</i> Dashboards <i>✦</i> Automations <i>✦</i> &amp; more on the way</span>
+    <span><i>✦</i> Gym Management <i>✦</i> Brand Websites <i>✦</i> Water Dispenser Rentals <i>✦</i> Bullion Trading <i>✦</i> Booking Platforms <i>✦</i> Web Apps <i>✦</i> SaaS <i>✦</i> Fintech <i>✦</i> Dashboards <i>✦</i> Automations <i>✦</i> &amp; more on the way</span>
   </div>
 </div>
 
@@ -933,7 +1105,7 @@ body{
     <div class="projects-grid">
       <a class="card tilt reveal" href="https://powertrack.codequackers.in/" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="icon-tile tile-orange">💪</div>
+          <div class="icon-tile"><img src="https://powertrack.codequackers.in/icons/icon-192.png" alt="" width="32" height="32"></div>
           <span class="badge-live">Live</span>
         </div>
         <h3>PowerTrack</h3>
@@ -945,7 +1117,7 @@ body{
 
       <a class="card tilt reveal d1" href="https://bizzq.codequackers.in/" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="icon-tile tile-violet">🎨</div>
+          <div class="icon-tile"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2080%2080%22%20fill%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22qG%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%237c3aed%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%23a78bfa%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%232dd4bf%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2236%22%20r%3D%2226%22%20stroke%3D%22url(%23qG)%22%20stroke-width%3D%225.5%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M57%2053%20L66%2066%22%20stroke%3D%22url(%23qG)%22%20stroke-width%3D%225.5%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2236%22%20r%3D%228%22%20fill%3D%22url(%23qG)%22%20opacity%3D%220.6%22%2F%3E%3C%2Fsvg%3E" alt="" width="32" height="32"></div>
           <span class="badge-live">Live</span>
         </div>
         <h3>BizzQ</h3>
@@ -957,7 +1129,7 @@ body{
 
       <a class="card tilt reveal" href="https://aquatrack.codequackers.in/" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="icon-tile tile-teal">💧</div>
+          <div class="icon-tile"><img src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2064%2064%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a1%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338BDF8%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2306B6D4%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%230284C7%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22a2%22%20x1%3D%220%25%22%20y1%3D%22100%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2334D399%22%2F%3E%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%2322D3EE%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2360A5FA%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M32%204%20C32%204%2012%2025.5%2012%2039.5%20C12%2050.5%2021%2059.5%2032%2059.5%20C43%2059.5%2052%2050.5%2052%2039.5%20C52%2025.5%2032%204%2032%204%20Z%22%20fill%3D%22url(%23a1)%22%2F%3E%3Cpath%20d%3D%22M32%2015%20C32%2015%2020%2028.5%2020%2038.5%20C20%2045%2025.5%2050%2032%2050%20C38.5%2050%2044%2045%2044%2038.5%20C44%2028.5%2032%2015%2032%2015%20Z%22%20fill%3D%22%23080D18%22%20opacity%3D%220.3%22%2F%3E%3Cpath%20d%3D%22M22%2041.5%20C22%2034.5%2027%2027.5%2032%2020.5%20C37%2027.5%2042%2034.5%2042%2041.5%20C42%2047%2037.5%2050.5%2032%2050.5%20C26.5%2050.5%2022%2047%2022%2041.5%20Z%22%20fill%3D%22url(%23a2)%22%2F%3E%3Cpath%20d%3D%22M32%208%20C32%208%2016%2026.5%2016%2038%20C16%2041.5%2017.5%2044.5%2020%2046.5%20C18%2043.5%2017%2040%2017%2037.5%20C17%2027.5%2032%2010.5%2032%208%20Z%22%20fill%3D%22%23FFFFFF%22%20opacity%3D%220.65%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2239%22%20r%3D%224%22%20fill%3D%22%23FFFFFF%22%2F%3E%3C%2Fsvg%3E" alt="" width="32" height="32"></div>
           <span class="badge-live">Live</span>
         </div>
         <h3>AquaTrack</h3>
@@ -969,7 +1141,7 @@ body{
 
       <a class="card tilt reveal d1" href="https://bullionhub.codequackers.in/" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="icon-tile tile-gold">🥇</div>
+          <div class="icon-tile"><svg viewBox="0 0 48 48" width="32" height="32" aria-hidden="true" focusable="false"><rect width="48" height="48" rx="10" fill="#1a1a2e"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#f59e0b" font-family="Space Grotesk,system-ui,sans-serif" font-weight="700" font-size="16">BH</text></svg></div>
           <span class="badge-live">Live</span>
         </div>
         <h3>BullionHub</h3>
@@ -981,13 +1153,35 @@ body{
 
       <a class="card tilt reveal" href="https://labtrack.codequackers.in/" target="_blank" rel="noopener">
         <div class="card-top">
-          <div class="icon-tile tile-blue">🧪</div>
+          <div class="icon-tile"><img src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2064%2064%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230d9488%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M27%2013v11L15%2040a7%207%200%200%200%206%2010.5h22a7%207%200%200%200%206-10.5L37%2024V13%22%2F%3E%3Cpath%20d%3D%22M21%2013h22%22%2F%3E%3Cpath%20d%3D%22M22%2038c7%203.5%2013%203.5%2020%200%22%20stroke-opacity%3D%22.85%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="" width="32" height="32"></div>
           <span class="badge-live">Live</span>
         </div>
         <h3>LabTrack</h3>
         <span class="domain">labtrack.codequackers.in <span>↗</span></span>
         <p class="desc">Run your diagnostic lab end-to-end: patients, sample tracking, results &amp; verification, NABL-style reports and GST billing — all in one place.</p>
         <div class="card-tags"><span>Lab Management</span><span>Healthcare</span><span>Billing</span></div>
+      </a>
+
+      <a class="card tilt reveal d1" href="https://reservo.codequackers.in/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="icon-tile"><img src="data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2224%22%20height%3D%2224%22%20rx%3D%226%22%20fill%3D%22%2310b981%22%2F%3E%3Cpath%20d%3D%22M12%204a7%207%200%2000-3.5%2013.06V21h2v-3h3v3h2v-3.94A7%207%200%200012%204Zm0%202a5%205%200%20010%2010%205%205%200%20010-10Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" alt="" width="32" height="32"></div>
+          <span class="badge-live">Live</span>
+        </div>
+        <h3>Reservo</h3>
+        <span class="domain">reservo.codequackers.in <span>↗</span></span>
+        <p class="desc">Run your booking business from one place — spaces, availability, GST invoices, CRM, multi-venue dashboards, WhatsApp and more.</p>
+        <div class="card-tags"><span>Booking Platform</span><span>GST</span><span>SaaS</span></div>
+      </a>
+
+      <a class="card card-lg tilt reveal d1" href="https://zaiqo.codequackers.in/" target="_blank" rel="noopener">
+        <div class="card-top">
+          <div class="icon-tile"><img src="https://zaiqo.codequackers.in/icons/icon-192.png" alt="" width="32" height="32"></div>
+          <span class="badge-live">Live</span>
+        </div>
+        <h3>Zaiqo</h3>
+        <span class="domain">zaiqo.codequackers.in <span>↗</span></span>
+        <p class="desc">The whole restaurant in one app — QR ordering, KOT &amp; kitchen display, touch POS, inventory &amp; purchasing, HRMS &amp; payroll and GST-ready billing for Indian restaurants.</p>
+        <div class="card-tags"><span>Restaurant ERP</span><span>POS &amp; KDS</span><span>GST Billing</span></div>
       </a>
 
       <div class="card card-coming reveal d2">
@@ -1019,7 +1213,7 @@ body{
     </div>
     <div class="reveal d4">
       <div class="form-card" id="contact-form">
-        <form id="cqForm">
+        <form id="cqForm" action="mailto:codequackers.in@gmail.com" method="post" enctype="text/plain">
           <div class="form-row">
             <div class="field">
               <label for="fName">Your name</label>
@@ -1065,7 +1259,7 @@ body{
     <h2>Intellectual property</h2>
     <p>All content, code, designs, logos and trademarks on this website belong to CodeQuackers or its clients and are protected by applicable law.</p>
     <h2>Third-party links</h2>
-    <p>Our site links to external products and services (PowerTrack, BizzQ, AquaTrack, BullionHub, LabTrack and more). We're not responsible for the content or practices of third-party sites.</p>
+    <p>Our site links to external products and services (PowerTrack, BizzQ, AquaTrack, BullionHub, LabTrack, Reservo, Zaiqo and more). We're not responsible for the content or practices of third-party sites.</p>
     <h2>No warranties</h2>
     <p>This website is provided "as is", without warranties of any kind, express or implied. We work hard to keep it accurate and fast, but we can't guarantee it will always be error-free or uninterrupted.</p>
     <h2>Limitation of liability</h2>
@@ -1116,7 +1310,7 @@ body{
   <div class="container footer-inner">
     <a href="#top" class="logo">
       <svg class="logo-mark" viewBox="0 0 64 64" style="width:30px;height:30px"><use href="#logoMark"/></svg>
-      <span class="logo-text">Code<em>Quackers</em><span class="logo-tag">&lt;/&gt;</span></span>
+      <span class="logo-text">Code<em>Quackers</em></span>
     </a>
     <nav class="footer-links" aria-label="Legal">
       <a href="#/terms">Terms of Service</a>
@@ -1127,12 +1321,21 @@ body{
   </div>
 </footer>
 
+<!-- The pond: a flock of ducks living along the bottom edge of the screen.
+     Purely decorative and script-driven, so it is hidden from assistive tech. -->
+<div class="pond" id="pond" aria-hidden="true">
+  <div class="pond-clip" id="pondDucks"></div>
+  <div class="pond-water"></div>
+  <div class="pond-bubbles" id="pondBubbles"></div>
+</div>
+
 <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
 
 <script>
 const hoverable = window.matchMedia('(hover: hover)').matches;
-const reduceMotion = false;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const motionPref = window.matchMedia('(prefers-reduced-motion: reduce)');
+const prefersReduced = () => motionPref.matches;
 const DEFAULT_TITLE = document.title;
 
 // Scroll: nav state, progress bar, back-to-top
@@ -1145,16 +1348,21 @@ const onScroll = () => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
   backTop.classList.toggle('show', window.scrollY > 600);
-  if (heroGrid && !reduceMotion) {
-    const h = heroGrid.offsetHeight + 240;
-    const p = Math.min(window.scrollY / h, 1);
-    heroGrid.style.opacity = (1 - p * 1.2).toFixed(3);
-    heroGrid.style.transform = 'translateY(' + (window.scrollY * .22).toFixed(1) + 'px)';
+  if (heroGrid) {
+    if (prefersReduced()) {
+      heroGrid.style.opacity = '';
+      heroGrid.style.transform = '';
+    } else {
+      const h = heroGrid.offsetHeight + 240;
+      const p = Math.min(window.scrollY / h, 1);
+      heroGrid.style.opacity = Math.max(0, 1 - p * 1.2).toFixed(3);
+      heroGrid.style.transform = 'translateY(' + (window.scrollY * .22).toFixed(1) + 'px)';
+    }
   }
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
-backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: prefersReduced() ? 'auto' : 'smooth' }));
 
 // Mobile menu
 const menuBtn = document.getElementById('menuBtn');
@@ -1174,16 +1382,21 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 const typedEl = document.querySelector('.typed');
 const words = ['web apps', 'SaaS platforms', 'admin dashboards', 'brand websites', 'fintech tools', 'anything that ships'];
 if (typedEl) {
-  let wi = 0, ci = 0, deleting = false;
-  (function tick() {
-    const word = words[wi];
-    ci += deleting ? -1 : 1;
-    typedEl.textContent = word.slice(0, ci);
-    let delay = deleting ? 42 : 92;
-    if (!deleting && ci === word.length) { delay = 1700; deleting = true; }
-    else if (deleting && ci === 0) { deleting = false; wi = (wi + 1) % words.length; delay = 350; }
-    setTimeout(tick, delay);
-  })();
+  if (prefersReduced()) {
+    typedEl.textContent = words[0];
+  } else {
+    let wi = 0, ci = 0, deleting = false;
+    (function tick() {
+      if (prefersReduced()) { typedEl.textContent = words[0]; return; }
+      const word = words[wi];
+      ci += deleting ? -1 : 1;
+      typedEl.textContent = word.slice(0, ci);
+      let delay = deleting ? 42 : 92;
+      if (!deleting && ci === word.length) { delay = 1700; deleting = true; }
+      else if (deleting && ci === 0) { deleting = false; wi = (wi + 1) % words.length; delay = 350; }
+      setTimeout(tick, delay);
+    })();
+  }
 }
 
 // Count-up stats
@@ -1203,7 +1416,12 @@ const cio = new IntersectionObserver(entries => {
     if (e.isIntersecting) { animCount(e.target); cio.unobserve(e.target); }
   });
 }, { threshold: .6 });
-document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+document.querySelectorAll('[data-count]').forEach(el => {
+  const suffix = el.dataset.suffix || '';
+  if (prefersReduced()) { el.textContent = el.dataset.count + suffix; return; }
+  el.textContent = '0' + suffix;
+  cio.observe(el);
+});
 
 // Reveal on scroll
 const io = new IntersectionObserver(entries => {
@@ -1219,7 +1437,7 @@ document.querySelectorAll('.card').forEach(card => {
     const r = card.getBoundingClientRect();
     card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
     card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    if (hoverable && card.classList.contains('tilt')) {
+    if (hoverable && !prefersReduced() && card.classList.contains('tilt')) {
       const rx = ((e.clientY - r.top) / r.height - .5) * -9;
       const ry = ((e.clientX - r.left) / r.width - .5) * 9;
       card.style.transform = 'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-4px)';
@@ -1232,6 +1450,7 @@ document.querySelectorAll('.card').forEach(card => {
 if (hoverable) {
   document.querySelectorAll('.magnetic').forEach(b => {
     b.addEventListener('pointermove', e => {
+      if (prefersReduced()) { b.style.transform = ''; return; }
       const r = b.getBoundingClientRect();
       const dx = (e.clientX - (r.left + r.width / 2)) * .15;
       const dy = (e.clientY - (r.top + r.height / 2)) * .15;
@@ -1258,7 +1477,7 @@ const route = () => {
     document.title = DEFAULT_TITLE;
     if (location.hash.length > 1 && !location.hash.startsWith('#/')) {
       const t = document.querySelector(location.hash);
-      if (t) requestAnimationFrame(() => t.scrollIntoView({ behavior: 'smooth' }));
+      if (t) requestAnimationFrame(() => t.scrollIntoView({ behavior: prefersReduced() ? 'auto' : 'smooth' }));
     }
   }
 };
@@ -1267,7 +1486,8 @@ route();
 
 // Ambient particle field
 const fxCanvas = document.getElementById('fx');
-if (fxCanvas && fxCanvas.getContext && !reduceMotion) {
+let startFx = () => {}, stopFx = () => {};
+if (fxCanvas && fxCanvas.getContext) {
   const ctx = fxCanvas.getContext('2d');
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
   let W = 0, H = 0, parts = [], rafId = null;
@@ -1314,33 +1534,46 @@ if (fxCanvas && fxCanvas.getContext && !reduceMotion) {
     }
     rafId = requestAnimationFrame(tick);
   };
-  resize();
-  tick();
-  window.addEventListener('resize', resize);
+  startFx = () => { if (rafId) return; resize(); tick(); };
+  stopFx = () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+    ctx.clearRect(0, 0, W, H);
+  };
+  window.addEventListener('resize', () => { if (rafId) resize(); });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { if (rafId) cancelAnimationFrame(rafId); rafId = null; }
-    else if (!rafId) tick();
+    if (document.hidden) stopFx();
+    else if (!prefersReduced()) startFx();
   });
+  if (!prefersReduced()) startFx();
 }
 
 // Cursor glow (desktop pointers only)
 const glow = document.getElementById('cursorGlow');
-if (glow && finePointer && !reduceMotion) {
+let startGlow = () => {}, stopGlow = () => {};
+if (glow && finePointer) {
   let gx = innerWidth / 2, gy = innerHeight / 2, tx = gx, ty = gy, gRaf = null;
-  window.addEventListener('pointermove', e => {
-    tx = e.clientX; ty = e.clientY;
-    if (!glow.classList.contains('on')) glow.classList.add('on');
-  }, { passive: true });
-  (function glowLoop() {
-    gx += (tx - gx) * .14; gy += (ty - gy) * .14;
-    glow.style.transform = 'translate(' + (gx - 260).toFixed(1) + 'px,' + (gy - 260).toFixed(1) + 'px)';
-    gRaf = requestAnimationFrame(glowLoop);
-  })();
+  window.addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  startGlow = () => {
+    if (gRaf) return;
+    glow.classList.add('on');
+    (function glowLoop() {
+      gx += (tx - gx) * .14; gy += (ty - gy) * .14;
+      glow.style.transform = 'translate(' + (gx - 260).toFixed(1) + 'px,' + (gy - 260).toFixed(1) + 'px)';
+      gRaf = requestAnimationFrame(glowLoop);
+    })();
+  };
+  stopGlow = () => {
+    if (gRaf) cancelAnimationFrame(gRaf);
+    gRaf = null;
+    glow.classList.remove('on');
+  };
+  if (!prefersReduced()) startGlow();
 }
 
 // Intro splash (once per session)
 const introEl = document.getElementById('intro');
-if (introEl && !reduceMotion) {
+if (introEl && !prefersReduced()) {
   let seen = false;
   try { seen = !!sessionStorage.getItem('cq_intro'); sessionStorage.setItem('cq_intro', '1'); } catch (e) {}
   if (!seen) {
@@ -1358,7 +1591,7 @@ const titleScramble = new IntersectionObserver(entries => {
 }, { threshold: .35 });
 document.querySelectorAll('.section-title').forEach(el => { if (!el.children.length) titleScramble.observe(el); });
 function scrambleTitle(el) {
-  if (reduceMotion) return;
+  if (prefersReduced()) return;
   el.dataset.scrambled = '1';
   const text = el.textContent;
   const chars = '!<>-_\\/[]{}—=+*^?#';
@@ -1386,7 +1619,7 @@ window.addEventListener('keydown', e => {
   if (quackBuf === 'quack') { quackBuf = ''; duckRain(); }
 });
 function duckRain() {
-  if (reduceMotion) return;
+  if (prefersReduced()) return;
   for (let i = 0; i < 18; i++) {
     const d = document.createElement('span');
     d.className = 'fx-emoji';
@@ -1403,7 +1636,7 @@ function duckRain() {
 
 // Confetti burst
 function burstConfetti(origin) {
-  if (reduceMotion) return;
+  if (prefersReduced()) return;
   const r = origin.getBoundingClientRect();
   const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
   const bits = ['🦆', '✦', '✨', '●', '★'];
@@ -1440,6 +1673,227 @@ cqForm.addEventListener('submit', e => {
   burstConfetti(cqForm.querySelector('.form-submit'));
   window.location.href = 'mailto:codequackers.in@gmail.com?subject=' + subject + '&body=' + body;
 });
+
+// ---- The Pond: a flock of ducks living along the bottom of the screen ----
+const pondStage = document.getElementById('pondDucks');
+const pondBubbles = document.getElementById('pondBubbles');
+let startPond = () => {}, stopPond = () => {};
+
+if (pondStage) {
+  const LINES = [
+    'quack.', 'ship it', 'LGTM', 'it works on my machine', '404: worm not found',
+    'deploy on a Friday?', 'rm -rf /breadcrumbs', 'brb, refactoring',
+    'have you tried turning it off and on?', 'git commit -m "stuff"',
+    'i only eat bugs', 'semicolons are a lifestyle',
+    'rubber duck debugging is my whole job', 'explain it to me. slowly.',
+    'it is not a bug, it is a feature', 'works locally. fails in prod.',
+    'closing as wontfix', 'it is a DNS issue', 'that is a caching issue',
+    'the tests pass. do not ask how.', 'reverting to the last commit that worked',
+    'who wrote this? ...oh. me.', 'i will fix it in the next sprint',
+    'have you read the error message?', 'just one more refactor, i promise',
+    'i speak fluent stack trace', 'undefined is not a function',
+    'nested ternaries are a crime', 'scope creep? never met her',
+    'quack-driven development', 'waddle you do when prod breaks?',
+    'duck tape > unit tests', 'bread-driven development',
+    'feature or bug? quack.', 'i am the senior engineer here',
+    'demo gods, please be kind'
+  ];
+  const ducks = [];
+  const ptr = { x: -999, y: -999 };
+  // keep clear of the back-to-top button parked in the bottom-right corner
+  const bounds = () => ({ min: 30, max: Math.max(70, innerWidth - 100) });
+  let raf = null, gen = 0, last = 0, clock = 0, boost = 0, lastScroll = window.scrollY;
+  let rapid = 0, rapidUntil = 0, panicUntil = 0;
+
+  function layout(d, t) {
+    const y = Math.sin(t * 1.7 + d.phase) * d.bob;
+    const tilt = d.face > 0 ? -2 : 2;
+    d.el.style.transform = 'translate3d(' + (d.x - d.size / 2).toFixed(1) + 'px,' + y.toFixed(2) +
+      'px,0) rotate(' + tilt + 'deg) scaleX(' + d.face + ')';
+    if (d.bubble && d.bubble.classList.contains('show')) {
+      // Keep the bubble on screen, then slide its tail so it still points at the duck
+      const half = (d.bubbleW || d.bubble.offsetWidth) / 2;
+      const lo = half + 8, hi = Math.max(lo, innerWidth - half - 8);
+      const bx = Math.min(Math.max(d.x, lo), hi);
+      d.bubble.style.left = bx.toFixed(0) + 'px';
+      d.bubble.style.bottom = (d.size + 6) + 'px';
+      const tail = Math.min(Math.max(d.x - bx + half, 14), half * 2 - 14);
+      d.bubble.style.setProperty('--tail', tail.toFixed(0) + 'px');
+    }
+  }
+
+  let lastLine = -1;
+  function pickLine() {
+    let i = (Math.random() * LINES.length) | 0;
+    if (LINES.length > 1 && i === lastLine) i = (i + 1) % LINES.length;   // never twice in a row
+    lastLine = i;
+    return LINES[i];
+  }
+
+  function say(d, text) {
+    if (!pondBubbles) return;
+    if (!d.bubble) {
+      d.bubble = document.createElement('div');
+      d.bubble.className = 'pond-bubble';
+      pondBubbles.appendChild(d.bubble);
+    }
+    d.bubble.textContent = text || pickLine();
+    d.bubbleW = d.bubble.offsetWidth;   // opacity:0 still has layout, so this measures correctly
+    d.bubble.classList.add('show');
+    clearTimeout(d.bubbleT);
+    d.bubbleT = setTimeout(() => d.bubble && d.bubble.classList.remove('show'), 2400);
+  }
+
+  function play(d, cls, ms) {
+    const inner = d.el.firstElementChild;
+    if (!inner) return;
+    inner.classList.remove('flip', 'spin', 'dive', 'squash', 'hop');
+    void inner.offsetWidth;
+    inner.classList.add(cls);
+    setTimeout(() => inner.classList.remove(cls), ms);
+  }
+
+  function quirk(d) {
+    const r = Math.random();
+    if (r < .36) say(d);
+    else if (r < .53) play(d, 'flip', 900);
+    else if (r < .68) play(d, 'dive', 1000);
+    else if (r < .83) play(d, 'spin', 900);
+    else play(d, 'squash', 800);
+  }
+
+  function feather(d) {
+    if (prefersReduced()) return;
+    const f = document.createElement('span');
+    f.className = 'pond-feather';
+    f.textContent = '🪶';
+    f.style.left = Math.round(d.x) + 'px';
+    f.style.top = (innerHeight - 62) + 'px';
+    f.style.setProperty('--fx', (Math.random() * 60 - 30).toFixed(0) + 'px');
+    f.style.setProperty('--fr', (Math.random() * 400 - 200).toFixed(0) + 'deg');
+    document.body.appendChild(f);
+    f.addEventListener('animationend', () => f.remove());
+  }
+
+  function flock() {
+    const want = innerWidth < 700 ? 3 : innerWidth < 1020 ? 4 : 5;
+    while (ducks.length > want) {
+      const d = ducks.pop();
+      d.el.remove();
+      if (d.bubble) d.bubble.remove();
+      clearTimeout(d.bubbleT);
+    }
+    while (ducks.length < want) {
+      const el = document.createElement('div');
+      el.className = 'pond-duck';
+      el.innerHTML = '<div class="pond-duck-in"><svg viewBox="0 0 64 64"><use href="#duckSprite"/></svg></div>';
+      pondStage.appendChild(el);
+      const size = 34 + Math.random() * 16;
+      el.style.width = el.style.height = size.toFixed(0) + 'px';
+      const b = bounds();
+      const d = {
+        el, size,
+        x: b.min + Math.random() * (b.max - b.min),
+        dir: Math.random() < .5 ? -1 : 1,
+        face: 1,
+        speed: 18 + Math.random() * 20,
+        phase: Math.random() * 6.283,
+        bob: 1.4 + Math.random() * 1.6,
+        next: 1.5 + Math.random() * 4,
+        bubble: null, bubbleT: null
+      };
+      d.face = d.dir;
+      el.addEventListener('click', () => {
+        say(d);
+        play(d, 'hop', 620);
+        feather(d);
+        rapid = clock < rapidUntil ? rapid + 1 : 1;
+        rapidUntil = clock + 1.6;
+        if (rapid >= 3) { panicUntil = clock + 2.2; rapid = 0; }
+      });
+      ducks.push(d);
+    }
+  }
+
+  function frame(now, g) {
+    if (g !== gen) return;            // superseded by a later run or a stop
+    const dt = Math.min(.05, (now - last) / 1000) || .016;
+    last = now;
+    clock += dt;
+
+    // fast scrolling stirs them up
+    const sy = window.scrollY, dv = Math.abs(sy - lastScroll);
+    lastScroll = sy;
+    if (dv > 1) boost = Math.min(2.6, boost + dv / 80);
+    boost *= Math.pow(.10, dt);
+
+    const b = bounds();
+    const near = ptr.y > innerHeight - 170;
+    const panic = clock < panicUntil;
+
+    for (const d of ducks) {
+      let mul = 1 + boost;
+      d.face = d.dir;
+      if (panic) mul = 3.4;
+      if (near && !panic) {
+        const dx = ptr.x - d.x, ad = Math.abs(dx);
+        if (ad < 130) {
+          d.face = dx >= 0 ? 1 : -1;                       // turn to look at the pointer
+          if (ad < 62) { d.dir = dx >= 0 ? -1 : 1; d.face = d.dir; mul = 3.6; }  // scurry away
+          else mul *= .10;                                  // freeze and stare
+        }
+      }
+      d.x += d.dir * d.speed * mul * dt;
+      if (d.x < b.min) { d.x = b.min; d.dir = 1; }
+      else if (d.x > b.max) { d.x = b.max; d.dir = -1; }
+
+      d.next -= dt;
+      if (d.next <= 0) {
+        d.next = 2.5 + Math.random() * 4.5;
+        if (!(d.bubble && d.bubble.classList.contains('show'))) quirk(d);
+      }
+      layout(d, clock);
+    }
+    raf = requestAnimationFrame(t => frame(t, g));
+  }
+
+  window.addEventListener('pointermove', e => { ptr.x = e.clientX; ptr.y = e.clientY; }, { passive: true });
+  document.addEventListener('pointerleave', () => { ptr.x = -999; ptr.y = -999; });
+  window.addEventListener('resize', flock);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopPond();
+    else if (!prefersReduced()) startPond();
+  });
+
+  flock();
+  // Position them once up front so they are never stacked at the left edge
+  // waiting for the first animation frame.
+  if (prefersReduced()) ducks.forEach(d => { d.bob = 0; });
+  ducks.forEach(d => layout(d, 0));
+
+  startPond = () => {
+    if (raf || prefersReduced()) return;
+    ducks.forEach(d => { if (!d.bob) d.bob = 1.4 + Math.random() * 1.6; });
+    const g = ++gen;
+    last = performance.now();
+    raf = requestAnimationFrame(t => frame(t, g));
+  };
+  stopPond = () => {
+    gen++;                            // invalidate any frame already in flight
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+  };
+  if (!prefersReduced()) startPond();
+}
+
+// React live if the motion preference changes mid-session
+const onMotionPreferenceChange = () => {
+  if (prefersReduced()) { stopFx(); stopGlow(); stopPond(); }
+  else { startFx(); startGlow(); startPond(); }
+  onScroll();
+};
+if (motionPref.addEventListener) motionPref.addEventListener('change', onMotionPreferenceChange);
+else if (motionPref.addListener) motionPref.addListener(onMotionPreferenceChange);
 </script>
 </body>
 </html>
