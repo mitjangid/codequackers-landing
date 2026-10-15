@@ -12,3 +12,7 @@ Thumbs.db
 # Icon-generator tool + stray browser cache/data it may leave behind
 /tools/Cache/
 /tools/Data/
+
+# Archives
+*.zip
+
