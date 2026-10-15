@@ -8,3 +8,7 @@ Thumbs.db
 # Editor junk
 .vscode/
 .idea/
+
+# Icon-generator tool + stray browser cache/data it may leave behind
+/tools/Cache/
+/tools/Data/
