@@ -47,25 +47,30 @@ if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, b
 const menuBtn = document.getElementById('menuBtn');
 const navLinks = document.getElementById('navLinks');
 if (menuBtn && navLinks) {
-  menuBtn.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
+  const toggleMenu = open => {
+    navLinks.classList.toggle('open', open);
     menuBtn.classList.toggle('open', open);
     menuBtn.setAttribute('aria-expanded', open);
+    document.body.classList.toggle('menu-open', open);
+  };
+  menuBtn.addEventListener('click', () => {
+    toggleMenu(!navLinks.classList.contains('open'));
   });
   // Escape closes the mobile menu and returns focus to its toggle
   window.addEventListener('keydown', e => {
     if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-      navLinks.classList.remove('open');
-      menuBtn.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
+      toggleMenu(false);
       menuBtn.focus();
     }
   });
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    menuBtn.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
+    toggleMenu(false);
   }));
+  document.addEventListener('click', e => {
+    if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+      toggleMenu(false);
+    }
+  });
 }
 
 // Typewriter
@@ -189,8 +194,8 @@ document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('pointerleave', () => { card.style.transform = ''; });
 });
 
-// Click delegation on project cards to navigate to deep-dive overview
-document.querySelectorAll('.projects-grid .card').forEach(card => {
+// Click delegation on project & client cards to navigate to deep-dive overview
+document.querySelectorAll('.projects-grid .card, .client-grid .card').forEach(card => {
   card.addEventListener('click', e => {
     if (e.target.closest('a') || e.target.closest('button')) return;
     const studyLink = card.querySelector('.card-case-study') || card.querySelector('h3 a');
@@ -217,7 +222,7 @@ if (hoverable) {
 
 // Portfolio category filtering
 const filterBtns = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.projects-grid .card');
+const projectCards = document.querySelectorAll('#work .projects-grid .card');
 if (filterBtns.length && projectCards.length) {
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -235,6 +240,26 @@ if (filterBtns.length && projectCards.length) {
     });
   });
 }
+
+// Click-to-copy terminal & package commands
+document.querySelectorAll('.oss code').forEach(code => {
+  code.style.cursor = 'pointer';
+  code.title = 'Click to copy command';
+  code.addEventListener('click', async () => {
+    const raw = code.textContent.trim();
+    if (raw.startsWith('✓')) return;
+    try {
+      await navigator.clipboard.writeText('pip install kalagana');
+      const prev = code.textContent;
+      code.textContent = '✓ Copied to clipboard!';
+      code.style.color = 'var(--teal)';
+      setTimeout(() => {
+        code.textContent = prev;
+        code.style.color = '';
+      }, 2200);
+    } catch (e) {}
+  });
+});
 
 // Prefill message on engagement button click
 document.querySelectorAll('[data-model]').forEach(btn => {
@@ -725,6 +750,8 @@ if (pondStage) {
 
   window.addEventListener('pointermove', e => { ptr.x = e.clientX; ptr.y = e.clientY; }, { passive: true });
   document.addEventListener('pointerleave', () => { ptr.x = -999; ptr.y = -999; });
+  window.addEventListener('pointerup', () => { ptr.x = -999; ptr.y = -999; }, { passive: true });
+  window.addEventListener('touchend', () => { ptr.x = -999; ptr.y = -999; }, { passive: true });
   window.addEventListener('resize', flock);
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopPond();
