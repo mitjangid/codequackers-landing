@@ -32,7 +32,10 @@ Here is the exact technical engineering implemented across the codebase to maxim
   - `BhavTrack` $\rightarrow$ Targets `Augmont alternative`, `MMTC-PAMP live rates`, `bullion rate streaming MCX`.
   - `AquaTrack` $\rightarrow$ Targets `WaterApp alternative`, `water dispenser rental ERP`.
   - `BizzQ` $\rightarrow$ Targets `WordPress alternative`, `Webflow alternative`.
+  - `BytePress` $\rightarrow$ Targets `WordPress alternative for news`, `WordPress VIP alternative`, `Ghost CMS alternative`, `digital news portal CMS`, `newsroom publishing platform India`, `AI text to speech news CMS`.
+  - `Fitwell` $\rightarrow$ Targets `wedding wear rental software`, `bridal lehenga rental ERP`, `TailorPad alternative`, `Vyapar alternative for rental`, `tailor job card app`.
   - `Rajaram Marmo` $\rightarrow$ Targets `SAP Business One alternative`, `Marg ERP stone edition`.
+  - `MandiERP` $\rightarrow$ Targets `mandi software`, `arhat software`, `APMC commission agent ERP`, `grain market billing desktop app`, `Tally mandi integration`, `Go desktop ERP`.
 - **Search Intent Copywriting**: Titles and descriptions are kept under optimal SERP pixel lengths (Title: 50–60 characters; Description: 140–160 characters) to avoid truncation in Google results.
 - **Canonical Tags**: Explicit `<link rel="canonical" href="...">` tags on every page prevent duplicate content penalties between `http`/`https` and `www`/`non-www`.
 
@@ -49,7 +52,7 @@ Search engines and AI crawlers do not read HTML like humans; they parse machine-
 
 ### 3. Generative Engine Optimization (GEO for AI Search)
 Modern users increasingly search via Perplexity, SearchGPT, Claude, and Google AI Overviews. These tools read structured documentation differently than traditional crawlers:
-- **`llms.txt`**: Standardized AI documentation file at the root of the domain (`https://codequackers.in/llms.txt`) summarizing all 10 products, technical architectures, compliance models, and direct competitor comparison matrices.
+- **`llms.txt`**: Standardized AI documentation file at the root of the domain (`https://codequackers.in/llms.txt`) summarizing all flagship SaaS products, tools, bespoke engineering platforms, technical architectures, compliance models, and direct competitor comparison matrices.
 - **`robots.txt`**: Configured to explicitly permit and welcome AI agents (`GPTBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Applebot-Extended`) while pointing them to `sitemap.xml` and `llms.txt`.
 
 ### 4. Technical Performance & Core Web Vitals (CWV)
@@ -101,7 +104,10 @@ Google **will not** rank a new site until it knows the site exists.
      - `https://codequackers.in/products/reservo.html`
      - `https://codequackers.in/products/aquatrack.html`
      - `https://codequackers.in/products/bizzq.html`
+     - `https://codequackers.in/products/bytepress.html`
+     - `https://codequackers.in/products/fitwell.html`
      - `https://codequackers.in/products/rajarammarmo.html`
+     - `https://codequackers.in/products/mandierp.html`
    > *Note: Requesting indexing forces Googlebot to queue your pages within 24 to 48 hours instead of waiting weeks for natural discovery.*
 
 ### Step 3: Set Up Bing Webmaster Tools & IndexNow
@@ -151,7 +157,10 @@ Use these terms in your social posts, case studies, directory listings, and disc
 | **BhavTrack** | Augmont, Bullion India, MMTC-PAMP | "Augmont alternative", "MCX live bullion rate ticker display", "Jewellery showroom gold rate TV board" |
 | **AquaTrack** | WaterApp, manual paper cards | "20L water bottle delivery app", "Water dispenser rental logistics software" |
 | **BizzQ** | WordPress, Webflow, Wix | "Fast WordPress alternative for business", "Lightweight business website builder" |
+| **BytePress** | WordPress, WordPress VIP, Ghost | "WordPress VIP alternative India", "Digital news portal CMS", "AI text to speech news website", "Live cricket scorecard CMS" |
+| **Fitwell** | TailorPad, Rentigo, Vyapar | "Wedding wear rental software India", "Sherwani lehenga rental ERP", "Custom tailor job card software", "Wardrobe rental security deposit management" |
 | **Rajaram Marmo** | SAP Business One, Marg ERP | "Natural marble manufacturing ERP", "Stone gangsaw maintenance ERP" |
+| **MandiERP** | Sluggish Tally Add-ons, FoxPro Mandi software | "Offline mandi software India", "Go Wails APMC desktop ERP", "Arhat trading accounting software", "Mandi 15 deduction calculator Tally XML" |
 
 ---
 

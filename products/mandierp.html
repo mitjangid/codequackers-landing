@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MandiERP — Offline-First Agricultural Mandi &amp; Arhat Trading Desktop ERP | CodeQuackers</title>
+<meta name="description" content="MandiERP is an offline-first desktop application engineered in Go and Wails v2 for agricultural mandi trading firms and commission agents (arhatiya). Features embedded SQLite, paisa-exact mandi deductions, keyboard-first Tally keybindings, 80mm thermal receipts, and automated Tally XML synchronization." />
+<meta name="keywords" content="mandi software, arhat software, mandi ERP software, APMC commission agent software, grain market billing software, Tally mandi integration, Go desktop ERP, Wails desktop app, offline ERP software, weighing scale kanta software" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<link rel="canonical" href="https://codequackers.in/products/mandierp.html" />
+<meta property="og:type" content="product" />
+<meta property="og:site_name" content="CodeQuackers" />
+<meta property="og:title" content="MandiERP — Offline-First Mandi &amp; Arhat Trading Desktop ERP | Go &amp; Wails" />
+<meta property="og:description" content="High-density offline desktop ERP for mandi trading desks: single Go binary, embedded SQLite, paisa-exact deductions, keyboard-first counter speed, and automated Tally Prime sync." />
+<meta property="og:url" content="https://codequackers.in/products/mandierp.html" />
+<meta property="og:image" content="https://codequackers.in/assets/icons/products/mandierp.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="MandiERP — Mandi &amp; Arhat Trading Desktop ERP | CodeQuackers" />
+<meta name="twitter:description" content="High-density offline desktop ERP for mandi trading desks: single Go binary, embedded SQLite, paisa-exact deductions, keyboard-first counter speed, and automated Tally Prime sync." />
+<meta name="twitter:image" content="https://codequackers.in/assets/icons/products/mandierp.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png" />
+<link rel="manifest" href="../site.webmanifest" />
+<link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='46' cy='12' r='8.5' fill='%23FFB02E'/%3E%3Cpath d='M42.6 4.7 Q41.3 1.7 44.4 1.3 Q42.9 3 43.8 5.1Z' fill='%23FFB02E'/%3E%3Cellipse cx='47.9' cy='15.5' rx='2.5' ry='1.5' fill='%23FF6B6B' opacity='.35'/%3E%3Cpath d='M53.6 9.4 Q60.4 9.3 60.5 11.6 Q60.6 13.9 53.6 13.8 Q52.2 11.6 53.6 9.4Z' fill='%23FF7A1A'/%3E%3Ccircle cx='49.1' cy='9.1' r='2.5' fill='%2307090E'/%3E%3Ccircle cx='49.9' cy='8.2' r='.85' fill='%23fff'/%3E%3Crect x='3' y='14' width='58' height='46' rx='15' fill='%23FF9A3C'/%3E%3Cpath d='M22 29 L13 37 L22 45' fill='none' stroke='%231B0F02' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M42 29 L51 37 L42 45' fill='none' stroke='%231B0F02' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M34.5 27 L29.5 47' fill='none' stroke='%231B0F02' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="../assets/fonts/fonts.css" />
+<link rel="stylesheet" href="../assets/css/style.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://codequackers.in/" },
+        { "@type": "ListItem", "position": 2, "name": "Client Deployments", "item": "https://codequackers.in/#client-work" },
+        { "@type": "ListItem", "position": 3, "name": "MandiERP Desktop Software", "item": "https://codequackers.in/products/mandierp.html" }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "MandiERP",
+      "url": "https://codequackers.in/products/mandierp.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Windows 10/11, Linux (x86_64), Native Desktop Executable",
+      "description": "Offline-first agricultural mandi and arhat trading desk ERP engineered with Go, Wails v2 and embedded SQLite. Zero server setup, paisa-exact mandi deductions, keyboard-first Tally shortcuts, 80mm thermal slips, and live Tally Prime XML synchronization.",
+      "image": "https://codequackers.in/assets/icons/products/mandierp.png",
+      "publisher": {
+        "@type": "Organization",
+        "name": "CodeQuackers",
+        "url": "https://codequackers.in/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why engineer MandiERP as a native Go + Wails desktop app instead of a web app or generic Tally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mandi trading yards operate in rural APMC corridors where internet connectivity is frequently intermittent and counter queues move at high velocity. Web apps introduce network latency and browser crashes, while generic Tally requires awkward manual voucher workarounds for quintal deductions. MandiERP is compiled as a single native Go executable: zero server configuration, zero cloud dependency, sub-millisecond local SQLite transactions, and direct Tally Prime XML synchronization over port 9000."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does MandiERP ensure financial accuracy across complex mandi deductions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mandi accounting relies on 15 distinct deduction kinds (Dalali per quintal, cash discounts by percentage, kanta weight shortages, bardana claims, flat charges, and TDS). MandiERP implements strict integer-based paise arithmetic, ensuring that calculated goods value, deduction round-offs, and net payable amounts never drift by a single paisa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can counter operators work without a mouse?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. MandiERP is built entirely keyboard-first, mirroring Tally's function key navigation (F8 for sales/estimate bills, F2 for date jump, F3 for firm switching, F6 for payment receipts, and Ctrl+A to save). Counter operators enter estimates with blazing touch-typing speed without ever lifting their hands to reach for a mouse."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Hidden SVG defs + logo symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="duckBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#FF8A1E"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#FF7A1A"/>
+    </linearGradient>
+  </defs>
+  <symbol id="logoMark" viewBox="0 0 64 64">
+    <circle cx="46" cy="12" r="8.5" fill="url(#duckBody)"/>
+    <path d="M42.6 4.7 Q41.3 1.7 44.4 1.3 Q42.9 3 43.8 5.1 Z" fill="url(#duckBody)"/>
+    <ellipse cx="47.9" cy="15.5" rx="2.5" ry="1.5" fill="#FF6B6B" opacity=".35"/>
+    <path d="M53.6 9.4 Q60.4 9.3 60.5 11.6 Q60.6 13.9 53.6 13.8 Q52.2 11.6 53.6 9.4 Z" fill="#FF6B1A"/>
+    <circle cx="49.1" cy="9.1" r="2.5" fill="#07090E"/>
+    <circle cx="49.9" cy="8.2" r=".85" fill="#fff"/>
+    <rect x="3" y="14" width="58" height="46" rx="15" fill="url(#badgeGrad)"/>
+    <rect x="3" y="14" width="58" height="46" rx="15" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+    <path d="M22 29 L13 37 L22 45" fill="none" stroke="#1B0F02" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M42 29 L51 37 L42 45" fill="none" stroke="#1B0F02" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M34.5 27 L29.5 47" fill="none" stroke="#1B0F02" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="duckSprite" viewBox="0 0 64 64">
+    <path d="M10 34 Q3.5 31 4.2 36.6 Q5.4 42 12.5 42.5 Z" fill="url(#duckBody)"/>
+    <ellipse cx="26" cy="43" rx="18.5" ry="15.5" fill="url(#duckBody)"/>
+    <circle cx="44" cy="23" r="13.5" fill="url(#duckBody)"/>
+    <path d="M41.5 12.4 Q40 6.6 45.6 6 Q43 9 44.2 12.6 Z" fill="url(#duckBody)"/>
+    <path d="M21.5 37 Q30 34 33.5 40 Q30.5 46.5 22 45.5 Q18.8 41 21.5 37 Z" fill="#FF7A1A" opacity=".45"/>
+    <ellipse cx="46.5" cy="28.2" rx="4.1" ry="2.5" fill="#FF6B6B" opacity=".3"/>
+    <path d="M54 21.1 Q62.7 20.9 62.9 23.1 Q63.1 25.3 54.1 25.2 Q52.8 23.1 54 21.1 Z" fill="#FF6B1A"/>
+    <path d="M55.4 23.1 Q58.8 23.3 62.2 23.1" fill="none" stroke="#D9500F" stroke-width=".8" stroke-linecap="round" opacity=".4"/>
+    <circle cx="49" cy="19.5" r="3.4" fill="#07090E"/>
+    <circle cx="50.3" cy="18.2" r="1.25" fill="#fff"/>
+    <circle cx="47.8" cy="21" r=".6" fill="#fff" opacity=".85"/>
+  </symbol>
+</svg>
+
+<div class="noise"></div>
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="logo" aria-label="CodeQuackers home">
+      <svg class="logo-mark" viewBox="0 0 64 64"><use href="#logoMark"/></svg>
+      <span class="logo-text">Code<em>Quackers</em></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a href="../index.html#services">Capabilities</a>
+      <a href="../index.html#why-us">Why us</a>
+      <a href="../index.html#work">Builds</a>
+      <a href="../index.html#client-work">Client Systems</a>
+      <a href="../index.html#engagement">Pricing</a>
+      <a href="../index.html#faq">FAQ</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html#contact" class="btn btn-primary magnetic">Start a sprint</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="product-page">
+  <div class="product-glow" style="background:radial-gradient(ellipse at center, rgba(247,188,51,0.22) 0%, rgba(247,188,51,0.06) 45%, transparent 70%)"></div>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">← Studio Home</a>
+      <span class="sep">/</span>
+      <a href="../index.html#client-work">Client Systems</a>
+      <span class="sep">/</span>
+      <span class="current">MandiERP (Agricultural Desktop ERP)</span>
+    </nav>
+
+    <div class="product-header">
+      <div class="product-header-top">
+        <div class="product-identity">
+          <div class="icon-tile" style="background:#1B150A;border-color:rgba(247,188,51,.45)">
+            <img src="../assets/icons/products/mandierp.png" alt="MandiERP logo" width="46" height="46" style="border-radius:10px">
+          </div>
+          <div>
+            <h1>MandiERP</h1>
+            <div class="sub">Offline-First Mandi &amp; Arhat Trading Desk Desktop ERP</div>
+          </div>
+        </div>
+        <div class="product-actions">
+          <span class="badge-live">Bespoke Desktop Build</span>
+          <span class="badge-soon" style="background:rgba(247,188,51,.12);color:#F7BC33;border-color:rgba(247,188,51,.35)">Go · Wails v2 · SQLite</span>
+        </div>
+      </div>
+      <p class="product-lead">The digital arhat desk engineered for agricultural market yard (APMC) trading firms: a single executable and one local database file. Zero internet connection required, zero cloud lag, sub-millisecond local SQLite transactions, paisa-exact deduction logic across 15 agricultural charge kinds, keyboard-first Tally shortcuts, and automated Tally XML synchronization.</p>
+      <div class="product-tags-bar">
+        <span>Go 1.26+</span>
+        <span>Wails v2 Desktop</span>
+        <span>Embedded SQLite</span>
+        <span>100% Offline-First</span>
+        <span>Mandi Deductions</span>
+        <span>Tally Prime XML Sync</span>
+        <span>Keyboard-First Navigation</span>
+        <span>80mm Thermal &amp; A4 Print</span>
+        <span class="tag-alt">vs. Sluggish Tally Plugins</span>
+      </div>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div class="product-metrics-grid">
+      <div class="metric-box">
+        <div class="metric-val">Single .exe</div>
+        <div class="metric-label">Zero Server, Zero DB Install</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">0ms Lag</div>
+        <div class="metric-label">Local Embedded SQLite Engine</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">Paisa-Exact</div>
+        <div class="metric-label">15 Agricultural Deduction Kinds</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-val">Tally Sync</div>
+        <div class="metric-label">Automated Port 9000 XML Push</div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <h2 style="font-family:var(--font-display);font-size:1.85rem;margin-bottom:1.5rem">Engineered for High-Pressure APMC Counter Workloads</h2>
+    <div class="product-features-grid">
+      <div class="feature-card">
+        <span class="feat-icon">🌾</span>
+        <h3>Estimate Bills &amp; Debit Notes (DN)</h3>
+        <p>Built for the exact arhat flow: party, broker, truck number, bags, bill weight, kanta scale notes, and 15 configurable deduction kinds (Dalali, Kanta weight loss, cash discounts, labour, bardana claims, and TDS).</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">⌨️</span>
+        <h3>Keyboard-First Tally Keybindings</h3>
+        <p>Counter operators never touch the mouse. Uses standard Tally shortcut conventions: F8 (New Estimate), F2 (Date), F3 (Account Switch), F6 (Payments), F12 (Setup), and Ctrl+A (Accept &amp; Save).</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">🔄</span>
+        <h3>Native Tally Prime XML Sync</h3>
+        <p>Built-in XML protocol engine connects directly to Tally on port 9000. Syncs batches of 25 journal vouchers automatically every 60 seconds with line-by-line refusal feedback.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">🏢</span>
+        <h3>Multi-Firm Account Hot-Switching</h3>
+        <p>Run multiple mandi trading firms from a single desk. Each entity has its own isolated SQLite database under `db/`, distinct GSTIN/PAN letterheads, and independent estimate serial numbers.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">💰</span>
+        <h3>Running Payment Book &amp; Ageing</h3>
+        <p>Track receivables and outstandings aged 0–30, 31–60, and 60+ days. Automatically credits payments on account against the oldest open bills, matching traditional arhat ledger settlement practices.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-icon">🖨️</span>
+        <h3>Direct Thermal &amp; A4 Sheet Printing</h3>
+        <p>Zero-dependency document rendering: print instant 80mm thermal slips for gate passes or complete A4 estimate sheets for formal audits without external PDF drivers.</p>
+      </div>
+    </div>
+
+    <!-- Technical Architecture -->
+    <div class="tech-spec-card">
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:1rem;color:var(--text)">Architecture &amp; Desktop Engineering</h3>
+      <div class="spec-grid">
+        <div class="spec-item"><span class="spec-label">Language &amp; Runtime:</span><span class="spec-val">Go (Golang 1.26+) — compiled to a single native GUI executable</span></div>
+        <div class="spec-item"><span class="spec-label">Desktop Shell:</span><span class="spec-val">Wails v2 — native OS WebView2 (no Chromium memory bloat; ~35MB RAM)</span></div>
+        <div class="spec-item"><span class="spec-label">Database Engine:</span><span class="spec-val">Embedded SQLite with WAL mode &amp; automated daily disk snapshots</span></div>
+        <div class="spec-item"><span class="spec-label">Accounting Bridge:</span><span class="spec-val">Custom zero-dependency XML envelope generator for Tally Prime / ERP 9</span></div>
+        <div class="spec-item"><span class="spec-label">Hardware &amp; Output:</span><span class="spec-val">ESC/POS thermal printer support, native Excel XLSX generation, custom title bar</span></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h2 style="font-family:var(--font-display);font-size:1.85rem;margin:3rem 0 1.5rem">Frequently Asked Questions</h2>
+    <div class="product-faq-list">
+      <details class="faq-item">
+        <summary>Why is an offline Go desktop app superior to a cloud SaaS in a mandi?</summary>
+        <div class="faq-ans">Mandi market yards frequently experience power cuts, fluctuating mobile towers, and network blackouts. A cloud app stops working the moment the internet drops. MandiERP runs 100% locally with embedded SQLite: it boots instantly, never buffers, and ensures bills can always be printed without internet reliance.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Does MandiERP alter or corrupt existing Tally databases?</summary>
+        <div class="faq-ans">No. MandiERP connects to Tally's official HTTP XML interface as an external client. It posts validated journal vouchers into your company ledger. Cancelled bills are never queued, and any refusal by Tally is clearly highlighted with exact ledger diagnostic errors.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can CodeQuackers engineer offline desktop software for other industrial sectors?</summary>
+        <div class="faq-ans">Yes. Beyond MandiERP and Rajaram Marmo, CodeQuackers builds custom offline-first desktop tools, edge warehouse terminals, and industrial hardware-interfaced software using Go, Wails, Rust, and embedded SQLite.</div>
+      </details>
+    </div>
+
+    <div class="product-nav-strip">
+      <a href="rajarammarmo.html" class="btn btn-sm btn-ghost">← Previous: Rajaram Marmo (Stone ERP)</a>
+      <a href="../index.html#client-work" class="btn btn-sm btn-ghost">View All Client Deployments →</a>
+    </div>
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="../index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 64 64" style="width:30px;height:30px"><use href="#logoMark"/></svg>
+      <span class="logo-text">Code<em>Quackers</em></span>
+    </a>
+    <nav class="footer-links" aria-label="Legal and services">
+      <a href="../terms.html">Terms of Service</a>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../index.html#services">Capabilities</a>
+      <a href="../index.html#why-us">Why us</a>
+      <a href="../index.html#work">Live builds</a>
+      <a href="../index.html#engagement">Pricing</a>
+      <a href="../index.html#faq">FAQ</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <div class="footer-products">
+      <span class="footer-products-title">SaaS Product Line:</span>
+      <a href="powertrack.html">PowerTrack (Gym Management)</a> · 
+      <a href="zaiqo.html">Zaiqo (Restaurant RMS)</a> · 
+      <a href="sarur.html">Sarur (Bar &amp; Dine OS)</a> · 
+      <a href="aquatrack.html">AquaTrack (Water Dispenser Rental)</a> · 
+      <a href="nocturne.html">Nocturne (Bar &amp; Pub ERP)</a> · 
+      <a href="bhavtrack.html">BhavTrack (Bullion Rates)</a> · 
+      <a href="labtrack.html">LabTrack (Pathology LIS)</a> · 
+      <a href="reservo.html">Reservo (Turf Booking)</a> · 
+      <a href="billnbin.html">BillNBin (GST Inventory)</a> · 
+      <a href="bizzq.html">BizzQ (Website CMS)</a> · 
+      <a href="bytepress.html">BytePress (News Portal CMS)</a> · 
+      <a href="fitwell.html">Fitwell (Wedding &amp; Tailor ERP)</a>
+      <div style="margin-top:.45rem">
+        <span class="footer-products-title">Bespoke Client Systems:</span>
+        <a href="rajarammarmo.html">Rajaram Marmo (Enterprise Stone ERP)</a> · 
+        <a href="mandierp.html">MandiERP (Agricultural Desktop ERP)</a>
+      </div>
+    </div>
+    <p>© 2026 CodeQuackers. All rights reserved.</p>
+    <p>Made with <span class="heart"><svg class="duck-inline" viewBox="0 0 64 64" aria-hidden="true"><use href="#duckSprite"/></svg></span> + ☕</p>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

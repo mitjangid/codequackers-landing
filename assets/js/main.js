@@ -19,7 +19,6 @@ const DEFAULT_TITLE = document.title;
 const nav = document.getElementById('nav');
 const progress = document.getElementById('progress');
 const backTop = document.getElementById('backTop');
-const heroGrid = document.querySelector('.hero-grid');
 const onScroll = () => {
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
   if (progress) {
@@ -27,17 +26,6 @@ const onScroll = () => {
     progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
   }
   if (backTop) backTop.classList.toggle('show', window.scrollY > 600);
-  if (heroGrid) {
-    if (prefersReduced()) {
-      heroGrid.style.opacity = '';
-      heroGrid.style.transform = '';
-    } else {
-      const h = heroGrid.offsetHeight + 240;
-      const p = Math.min(window.scrollY / h, 1);
-      heroGrid.style.opacity = Math.max(0, 1 - p * 1.2).toFixed(3);
-      heroGrid.style.transform = 'translateY(' + (window.scrollY * .22).toFixed(1) + 'px)';
-    }
-  }
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
@@ -94,17 +82,19 @@ if (typedEl) {
   }
 }
 
-// Chip constellation: connect each floating product chip to the next (and close the
-// ring back to the first). The lines are redrawn every frame because the chips bob on
-// independent phases — static lines would drift off their anchors within a second.
+// Chip constellation: connect each floating product chip in an orbital loop
 const heroVisual = document.querySelector('.hero-visual');
 if (heroVisual && heroVisual.querySelector('.chip-web')) {
   const webBase = heroVisual.querySelector('.web-base');
   const webFlow = heroVisual.querySelector('.web-flow');
   const chips = [...heroVisual.querySelectorAll('.chip')];
   const duckGs = [...heroVisual.querySelectorAll('.web-duck')];
+  let cachedL = 0;
+
   const drawWeb = () => {
+    if (window.innerWidth <= 700) return;
     const vr = heroVisual.getBoundingClientRect();
+    if (!vr.width || !vr.height) return;
     const pts = chips.map(c => {
       const r = c.getBoundingClientRect();
       return [(r.left + r.right) / 2 - vr.left, (r.top + r.bottom) / 2 - vr.top];
@@ -113,37 +103,48 @@ if (heroVisual && heroVisual.querySelector('.chip-web')) {
     for (let i = 1; i < pts.length; i++) d += 'L' + pts[i][0].toFixed(1) + ' ' + pts[i][1].toFixed(1);
     webBase.setAttribute('d', d + 'Z');
     webFlow.setAttribute('d', d + 'Z');
+    cachedL = webBase.getTotalLength() || 0;
   };
-  if (prefersReduced()) {
-    // Chips hold still under reduced motion, so one draw (plus resize/load re-draws) is enough.
-    drawWeb();
-    addEventListener('resize', drawWeb);
-    addEventListener('load', drawWeb);
-  } else {
+
+  drawWeb();
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawWeb, 200);
+  });
+  window.addEventListener('load', drawWeb);
+
+  if (!prefersReduced()) {
     let webRaf = 0, webRunning = false, lastT = 0, travel = 0;
     const webLoop = now => {
-      drawWeb();
-      // Ducks waddle the ring, feet on the wire, flipping to face their direction of travel.
-      const dt = Math.min(now - lastT, 100); lastT = now;
-      const L = webBase.getTotalLength();
-      if (L > 0 && duckGs.length) {
-        travel = (travel + dt * .055) % L;
+      if (window.innerWidth > 700 && cachedL > 0 && duckGs.length) {
+        const dt = Math.min(now - lastT, 100);
+        lastT = now;
+        travel = (travel + dt * 0.055) % cachedL;
         duckGs.forEach((g, i) => {
-          const at = (travel + i * L / duckGs.length) % L;
+          const at = (travel + i * cachedL / duckGs.length) % cachedL;
           const p = webBase.getPointAtLength(at);
-          const q = webBase.getPointAtLength((at + 2) % L);
+          const q = webBase.getPointAtLength((at + 2) % cachedL);
           g.setAttribute('transform', 'translate(' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + ')' + (q.x < p.x ? ' scale(-1 1)' : ''));
         });
       }
-      webRaf = requestAnimationFrame(webLoop);
+      if (webRunning) webRaf = requestAnimationFrame(webLoop);
     };
-    // Burn no frames while the hero is scrolled away (or display:none on a legal page).
+
+    // Burn no frames while the hero is scrolled away (or on mobile)
     new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting && !webRunning) { webRunning = true; webRaf = requestAnimationFrame(webLoop); }
-        else if (!e.isIntersecting && webRunning) { webRunning = false; cancelAnimationFrame(webRaf); }
+        if (e.isIntersecting && !webRunning && window.innerWidth > 700) {
+          if (!cachedL) drawWeb();
+          webRunning = true;
+          lastT = performance.now();
+          webRaf = requestAnimationFrame(webLoop);
+        } else if (!e.isIntersecting && webRunning) {
+          webRunning = false;
+          cancelAnimationFrame(webRaf);
+        }
       });
-    }).observe(heroVisual);
+    }, { threshold: 0.1 }).observe(heroVisual);
   }
 }
 
@@ -327,20 +328,21 @@ if (fxCanvas && fxCanvas.getContext) {
     H = fxCanvas.height = Math.round(innerHeight * DPR);
     fxCanvas.style.width = innerWidth + 'px';
     fxCanvas.style.height = innerHeight + 'px';
-    const count = Math.min(70, Math.round((innerWidth * innerHeight) / 16000));
+    const count = window.innerWidth <= 700 ? 0 : Math.min(35, Math.round((innerWidth * innerHeight) / 28000));
     parts = Array.from({ length: count }, () => ({
       x: Math.random() * W, y: Math.random() * H,
       r: (Math.random() * 1.5 + .6) * DPR,
-      vx: (Math.random() - .5) * .4 * DPR,
-      vy: (Math.random() - .5) * .4 * DPR,
+      vx: (Math.random() - .5) * .3 * DPR,
+      vy: (Math.random() - .5) * .3 * DPR,
       ph: Math.random() * Math.PI * 2,
-      tw: Math.random() * .02 + .006,
+      tw: Math.random() * .015 + .005,
       hue: Math.random() < .55 ? '255,154,60' : '53,224,192',
-      base: Math.random() * .45 + .2
+      base: Math.random() * .4 + .2
     }));
   };
-  const LINK = 120 * DPR;
+  const LINK = 100 * DPR;
   const tick = () => {
+    if (window.innerWidth <= 700) { stopFx(); return; }
     ctx.clearRect(0, 0, W, H);
     for (const p of parts) {
       p.x += p.vx; p.y += p.vy; p.ph += p.tw;
@@ -352,7 +354,7 @@ if (fxCanvas && fxCanvas.getContext) {
       ctx.fill();
     }
     ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(255,154,60,0.045)';
+    ctx.strokeStyle = 'rgba(255,154,60,0.035)';
     ctx.beginPath();
     for (let i = 0; i < parts.length; i++) {
       for (let j = i + 1; j < parts.length; j++) {
@@ -367,7 +369,7 @@ if (fxCanvas && fxCanvas.getContext) {
     ctx.stroke();
     rafId = requestAnimationFrame(tick);
   };
-  startFx = () => { if (rafId) return; resize(); tick(); };
+  startFx = () => { if (rafId || window.innerWidth <= 700) return; resize(); tick(); };
   stopFx = () => {
     if (rafId) cancelAnimationFrame(rafId);
     rafId = null;
@@ -376,9 +378,9 @@ if (fxCanvas && fxCanvas.getContext) {
   window.addEventListener('resize', () => { if (rafId) resize(); });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopFx();
-    else if (!prefersReduced()) startFx();
+    else if (!prefersReduced() && window.innerWidth > 700) startFx();
   });
-  if (!prefersReduced()) startFx();
+  if (!prefersReduced() && window.innerWidth > 700) startFx();
 }
 
 // Cursor glow (desktop pointers only)
@@ -510,7 +512,8 @@ const composeBody = f => {
     body: 'Hi CodeQuackers,\n\n' + msg + '\n\n— ' + (name || '—') + (email ? ' (' + email + ')' : '')
   };
 };
-cqForm.addEventListener('submit', async e => {
+if (cqForm) {
+  cqForm.addEventListener('submit', async e => {
   e.preventDefault();
   const f = e.target;
   // Botcheck honeypot: silently ignore bots
@@ -563,7 +566,8 @@ cqForm.addEventListener('submit', async e => {
     btn.disabled = false;
     btn.innerHTML = busy;
   }
-});
+  });
+}
 
 // ---- The Pond: a flock of ducks living along the bottom of the screen ----
 const pondStage = document.getElementById('pondDucks');
@@ -776,7 +780,18 @@ if (pondStage) {
     if (raf) cancelAnimationFrame(raf);
     raf = null;
   };
-  if (!prefersReduced()) startPond();
+  const pondEl = document.getElementById('pond');
+  if (pondEl && 'IntersectionObserver' in window) {
+    const pondObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) startPond();
+        else stopPond();
+      });
+    }, { threshold: 0.05 });
+    pondObserver.observe(pondEl);
+  } else if (!prefersReduced()) {
+    startPond();
+  }
 }
 
 // React live if the motion preference changes mid-session

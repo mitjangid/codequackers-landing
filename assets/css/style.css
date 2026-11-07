@@ -223,8 +223,9 @@ section{position:relative}
   position:relative;width:240px;height:240px;z-index:2;
   filter:drop-shadow(0 24px 45px rgba(255,138,30,.28));
   animation:floaty 5.5s ease-in-out infinite;
+  will-change:transform;
 }
-@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-18px) rotate(2deg)}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-6px) rotate(1deg)}}
 .m-eye{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
 @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
 .ground{
@@ -242,25 +243,26 @@ section{position:relative}
   top:calc(50% + sin(var(--a)) * var(--ry));
   translate:-50% -50%;
   padding:.55rem .95rem;border-radius:999px;font-size:.82rem;font-weight:600;
-  background:rgba(13,17,24,.72);border:1px solid var(--border-strong);
-  backdrop-filter:blur(10px);color:var(--text);
+  background:rgba(13,17,24,.82);border:1px solid var(--border-strong);
+  backdrop-filter:blur(8px);color:var(--text);
   box-shadow:0 10px 30px -12px rgba(0,0,0,.6);
   transition:border-color .3s,transform .3s,box-shadow .3s;
   animation:floaty 6s ease-in-out infinite;
+  will-change:transform;
 }
 .chip:hover{border-color:rgba(255,154,60,.65);box-shadow:0 14px 34px -12px rgba(255,138,30,.35)}
 .chip em{font-style:normal;font-size:1.05rem;line-height:1}
 .chip img{border-radius:4px;flex-shrink:0}
-/* Ten slots, 36° apart, starting at 12 o'clock. The delays march -.6s per chip so the
+/* Eight slots, 45° apart, starting at 12 o'clock. The delays march -.75s per chip so the
    bob travels around the ring like a wave. */
 .chip-1{--a:-90deg;animation-delay:0s}
-.chip-2{--a:-54deg;animation-delay:-.6s}
-.chip-3{--a:-18deg;animation-delay:-1.2s}
-.chip-4{--a:18deg;animation-delay:-1.8s}
-.chip-5{--a:54deg;animation-delay:-2.4s}
-.chip-6{--a:90deg;animation-delay:-3s}
-.chip-7{--a:126deg;animation-delay:-3.6s}
-.chip-8{--a:162deg;animation-delay:-4.2s}
+.chip-2{--a:-45deg;animation-delay:-.75s}
+.chip-3{--a:0deg;animation-delay:-1.5s}
+.chip-4{--a:45deg;animation-delay:-2.25s}
+.chip-5{--a:90deg;animation-delay:-3s}
+.chip-6{--a:135deg;animation-delay:-3.75s}
+.chip-7{--a:180deg;animation-delay:-4.5s}
+.chip-8{--a:225deg;animation-delay:-5.25s}
 .chip-9{--a:198deg;animation-delay:-4.8s}
 .chip-10{--a:234deg;animation-delay:-5.4s}
 
@@ -547,7 +549,7 @@ html.js .term-body p{opacity:0;transform:translateX(-8px)}
 .card-lg{grid-column:span 2}
 .card .domain span{display:inline-block;transition:transform .3s var(--ease)}
 .card:hover .domain span{transform:translate(3px,-3px)}
-.card-coming{border-style:dashed;justify-content:center;align-items:flex-start;background:transparent;grid-column:span 3}
+.card-coming{border-style:dashed;justify-content:center;align-items:flex-start;background:transparent;grid-column:span 1}
 .card-soon{cursor:default}
 /* no domain line on this one, so restore the rhythm the other cards get from theirs */
 .card-soon .desc{margin-top:.85rem}
@@ -970,9 +972,6 @@ body{
 .nav .btn-primary{animation:ctaPulse 3s ease-in-out infinite}
 @keyframes ctaPulse{0%,100%{box-shadow:0 10px 30px -8px rgba(255,138,30,.45)}50%{box-shadow:0 12px 42px -6px rgba(255,138,30,.9)}}
 
-/* ============ FX: hero recede ============ */
-.hero-grid{will-change:transform,opacity}
-
 /* ============ FX: duck rain & confetti ============ */
 .fx-emoji{position:fixed;top:-70px;z-index:85;pointer-events:none;line-height:1;animation:duckFall linear forwards;will-change:transform}
 @keyframes duckFall{to{transform:translateY(118vh) rotate(var(--rot,40deg))}}
@@ -1074,9 +1073,9 @@ body{
   .nav-links a:not(.btn){padding:.9rem .4rem;font-size:1.05rem;border-bottom:1px solid var(--border)}
   .nav-links .btn{margin-top:.6rem;text-align:center;justify-content:center}
   .menu-btn{display:flex}
-  .hero{padding-top:120px}
-  .hero-grid{grid-template-columns:1fr;gap:3rem}
-  .hero-visual{min-height:420px;order:2}
+  .hero{padding-top:115px;min-height:auto}
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-visual{min-height:420px;order:2;width:100%;max-width:480px;margin-inline:auto}
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .services-head{grid-template-columns:1fr;gap:2.5rem}
   .features-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1099,15 +1098,18 @@ body{
   .founder-accolades{justify-content:center}
   .founder-links{justify-content:center}
   .section{padding:80px 0}
-  .hero{padding-bottom:60px}
-  .spin-badge{width:250px;height:250px}
-  /* tighter orbit + smaller chips so the 9-up ring still fits a phone-width pond */
-  .hero-visual{--rx:40%;--ry:42%}
+  .hero{padding-top:100px;padding-bottom:50px}
+  .hero-grid{gap:2rem}
+  .hero-visual{min-height:360px;--rx:37%;--ry:38%;width:100%;max-width:360px;margin:0 auto}
+  .mascot{width:155px;height:155px}
+  .spin-badge{width:195px;height:195px}
+  .ground{width:125px;height:18px;bottom:18px}
+  .chip{padding:.32rem .58rem;font-size:.71rem;gap:.3rem;backdrop-filter:none;background:rgba(13,17,24,.92);border-color:rgba(255,154,60,.32);box-shadow:0 4px 14px rgba(0,0,0,.5);white-space:nowrap}
+  .chip img,.chip svg{width:14px;height:14px}
+  .chip-web{display:none!important}
   .oss{padding:1.2rem 1.1rem;gap:.9rem}
   .oss-mark{width:38px;height:38px;border-radius:10px}
   .oss-mark img{width:28px;height:28px}
-  .chip{padding:.4rem .7rem;font-size:.74rem;gap:.35rem}
-  .chip img,.chip svg{width:15px;height:15px}
   .back-top{right:16px;bottom:16px}
 }
 

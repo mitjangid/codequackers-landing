@@ -16,3 +16,6 @@ Thumbs.db
 # Archives
 *.zip
 
+# Client collateral & print assets
+meraki_hub_menu/
+

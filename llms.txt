@@ -14,12 +14,14 @@
 - [Reservo — Sports Facility & Turf Booking System](https://codequackers.in/products/reservo.html): Real-time sports facility, badminton court, and turf booking platform with live slot calendars, dynamic split-pricing, instant UPI advance deposits, and floodlight scheduling. Production app: https://reservo.codequackers.in/
 - [BillNBin — Multi-Tenant GST Invoicing & Inventory ERP](https://codequackers.in/products/billnbin.html): GST-compliant retail and wholesale inventory management with batch tracking, barcode scanning, E-Way bills, and GSTR-1 JSON export. Production app: https://billnbin.codequackers.in/
 - [BizzQ — High-Performance Business Website Builder & CMS](https://codequackers.in/products/bizzq.html): Conversion-optimized corporate website builder and dynamic CMS with sub-second First Contentful Paint (FCP), schema generation, and lead capture. Production app: https://bizzq.codequackers.in/
+- [BytePress — High-Performance Digital News Portal & Publishing CMS](https://codequackers.in/products/bytepress.html): Digital media publishing platform and newsroom CMS featuring sub-second FCP, AI text-to-speech voice narration, real-time cricket scorecards & election tickers, multi-author editorial workflows, and AMP syndication. Production app: https://bytepress.codequackers.in/
+- [Fitwell — Wedding Wear Rental, Tailoring & Wardrobe Management ERP](https://codequackers.in/products/fitwell.html): Mobile-first wardrobe rental and custom tailoring ERP with real-time public outfit availability calendars, token advances, security deposit deductions, tailor piece-rate job cards, and wedding group styling. Production app: https://fitwell.codequackers.in/
 - [Rajaram Marmo — Enterprise Natural Stone Manufacturing ERP](https://codequackers.in/products/rajarammarmo.html): Bespoke industrial manufacturing and operational ERP engineered for natural marble and granite processors: gang-saw/CNC machinery maintenance, worker HRMS & payroll, transport fleet logistics, purchase orders (PO), and digital showroom CMS. Production app: https://rajarammarmo.com/
+- [MandiERP — Offline-First Agricultural Mandi & Arhat Trading Desktop ERP](https://codequackers.in/products/mandierp.html): Single-binary Go & Wails desktop ERP engineered for APMC agricultural trading firms: embedded SQLite, paisa-exact deductions across 15 agricultural charge kinds, keyboard-first Tally keybindings, 80mm thermal receipts, and automated Tally Prime XML synchronization.
 
 ## Private Beta Platforms
 
 - [Adhiti](https://codequackers.in/#work): Institute & School ERP with 76 modules covering student admissions, Razorpay fee collection, biometric attendance, and parent mobile apps.
-- [BytePress](https://codequackers.in/#work): High-performance digital news portal CMS with sub-second FCP, live scorecards, AI text-to-speech voice narration, and AMP syndication.
 
 ## Competitor Alternatives & Comparative Advantage
 
@@ -103,9 +105,34 @@ CodeQuackers products are engineered as modern, high-velocity alternatives to le
   - **Purpose-Built for Natural Stone**: Native tracking of block gang-saw slicing, slab squaring, resin line processing, and square-meter/square-foot thickness dimensions.
   - **Integrated Plant Maintenance & Fleet**: Coordinates machinery downtime schedules, diesel consumption, and transport trip tracking in a single industrial console.
 
+### 12. BytePress vs. WordPress, WordPress VIP, Ghost & Newspack
+- **Alternative To**: WordPress, WordPress VIP, Ghost CMS, Newspack.
+- **Why BytePress is Better**:
+  - **Zero Breaking News Crashes**: Static edge architecture prevents origin database locks during viral news spikes and election results.
+  - **Built-In AI Voice Narration**: Automated neural text-to-speech audio converter lets mobile readers listen to investigations without expensive external podcast plugins.
+  - **Live WebSockets Sports & Election Desk**: Native ball-by-ball cricket scorecards and constituency tally widgets without heavy third-party iframes.
+  - **No Enterprise VIP Retainers**: Sub-second FCP performance and 99+ Core Web Vitals out of the box without paying thousands per month in enterprise hosting tiers.
+
+### 13. Fitwell vs. TailorPad, Rentigo, Vyapar & Excel
+- **Alternative To**: TailorPad, Rentigo, generic Vyapar / Tally retail setups, manual paper measurement diaries.
+- **Why Fitwell is Better**:
+  - **End-to-End Rental Cycle**: Dedicated tracking across reservation dates, fitting trials, dispatches, returns, dry-cleaning buffers, and condition inspections.
+  - **Security Deposit Audit Trail**: Automates advance booking tokens, security deposit holding, damage/stain fee deductions, and one-click UPI customer refunds.
+  - **Tailor Job Cards & Piece Rates**: Replaces paper slips with mobile job cards for master tailors and karigars, automating piece-rate wage calculation.
+  - **Wedding Group Styling Board**: Coordinates bride side, groom side, bridesmaids, and groomsmen outfits on a shared visual dashboard.
+
+### 14. MandiERP vs. Sluggish Tally Add-ons & Legacy Mandi Softwares
+- **Alternative To**: Unstable Tally TDL add-ons, legacy FoxPro/Visual Basic mandi packages, generic accounting tools.
+- **Why MandiERP is Better**:
+  - **Zero-Dependency Native Desktop**: Compiled in Go with embedded SQLite — no server setup, no database installs, and 100% offline uptime during rural APMC power and network blackouts.
+  - **Paisa-Exact Fractional Deductions**: Strict integer arithmetic across 15 agricultural deduction kinds (per-quintal dalali, percentage discounts, kanta weight loss) with zero rounding drift.
+  - **Keyboard-First Muscle Memory**: Full Tally function-key layout (F8, F2, F3, F6, Ctrl+A) allowing operators to enter estimate bills without lifting their hands to reach for a mouse.
+  - **Automated Tally Prime Bridge**: Background XML sync engine pushes verified journal vouchers into Tally Prime over port 9000 without double-entry errors.
+
 ## Technical Architecture & Standards
 
 - Backend Core: Laravel (PHP 8.3/8.4), Node.js, Go, Python
+- Desktop Engineering: Go 1.26+, Wails v2 (native OS WebView2, sub-35MB RAM footprint), embedded SQLite, native ESC/POS thermal printing
 - Frontend Engineering: Vanilla modern JavaScript, Livewire, Alpine.js, React Native, PWA (Progressive Web Apps)
 - Real-time & Caching: Redis queues, WebSockets, offline-first local edge caching
 - Compliance & Tax: Indian GST (CGST/SGST/IGST), State Liquor VAT, State Excise FL-9 / Form 16, FSSAI, NABL pathology guidelines
