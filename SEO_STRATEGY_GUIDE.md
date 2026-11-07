@@ -109,6 +109,7 @@ Google **will not** rank a new site until it knows the site exists.
      - `https://codequackers.in/products/fitwell.html`
      - `https://codequackers.in/products/rajarammarmo.html`
      - `https://codequackers.in/products/mandierp.html`
+     - `https://codequackers.in/products/visito.html`
    > *Note: Requesting indexing forces Googlebot to queue your pages within 24 to 48 hours instead of waiting weeks for natural discovery.*
 
 ### Step 3: Set Up Bing Webmaster Tools & IndexNow
