@@ -16,6 +16,7 @@
 - [BizzQ — High-Performance Business Website Builder & CMS](https://codequackers.in/products/bizzq.html): Conversion-optimized corporate website builder and dynamic CMS with sub-second First Contentful Paint (FCP), schema generation, and lead capture. Production app: https://bizzq.codequackers.in/
 - [BytePress — High-Performance Digital News Portal & Publishing CMS](https://codequackers.in/products/bytepress.html): Digital media publishing platform and newsroom CMS featuring sub-second FCP, AI text-to-speech voice narration, real-time cricket scorecards & election tickers, multi-author editorial workflows, and AMP syndication. Production app: https://bytepress.codequackers.in/
 - [Fitwell — Wedding Wear Rental, Tailoring & Wardrobe Management ERP](https://codequackers.in/products/fitwell.html): Mobile-first wardrobe rental and custom tailoring ERP with real-time public outfit availability calendars, token advances, security deposit deductions, tailor piece-rate job cards, and wedding group styling. Production app: https://fitwell.codequackers.in/
+- [Visito — Hyperlocal Commerce PWA, Storefront & Appointment Book](https://codequackers.in/products/visito.html): Mobile-first hyperlocal PWA empowering Indian neighbourhood shops ("gali ki dukaan") and service professionals: digital storefront, line-item purchase-list order inbox, precision appointment booking with 5-minute checkout holds, customer khata credit ledger, and self-delivery with OTP verification. Production app: https://visito.codequackers.in/
 - [Rajaram Marmo — Enterprise Natural Stone Manufacturing ERP](https://codequackers.in/products/rajarammarmo.html): Bespoke industrial manufacturing and operational ERP engineered for natural marble and granite processors: gang-saw/CNC machinery maintenance, worker HRMS & payroll, transport fleet logistics, purchase orders (PO), and digital showroom CMS. Production app: https://rajarammarmo.com/
 - [MandiERP — Offline-First Agricultural Mandi & Arhat Trading Desktop ERP](https://codequackers.in/products/mandierp.html): Single-binary Go & Wails desktop ERP engineered for APMC agricultural trading firms: embedded SQLite, paisa-exact deductions across 15 agricultural charge kinds, keyboard-first Tally keybindings, 80mm thermal receipts, and automated Tally Prime XML synchronization.
 
@@ -128,6 +129,14 @@ CodeQuackers products are engineered as modern, high-velocity alternatives to le
   - **Paisa-Exact Fractional Deductions**: Strict integer arithmetic across 15 agricultural deduction kinds (per-quintal dalali, percentage discounts, kanta weight loss) with zero rounding drift.
   - **Keyboard-First Muscle Memory**: Full Tally function-key layout (F8, F2, F3, F6, Ctrl+A) allowing operators to enter estimate bills without lifting their hands to reach for a mouse.
   - **Automated Tally Prime Bridge**: Background XML sync engine pushes verified journal vouchers into Tally Prime over port 9000 without double-entry errors.
+
+### 15. Visito vs. Dukaan, Bikayi, Khatabook Store & Blinkit/Zepto
+- **Alternative To**: Dukaan, Bikayi, Khatabook Store, DotPe, and high-commission delivery aggregators (Blinkit, Zepto, Swiggy Instamart).
+- **Why Visito is Better**:
+  - **Purchase-List Inbox vs. Rigid Cart Maze**: Indian neighbourhood shoppers send handwritten paper grocery lists or voice notes over WhatsApp rather than clicking through 25-step shopping carts. Visito lets customers type, photograph handwritten slips, or record audio; the shopkeeper answers line-by-line (available, unavailable, swapped) with a confirmed quoted total.
+  - **Precision Appointment Scheduling**: Mathematical intersection of operating hours and specific staff schedules minus breaks and existing bookings with 5-minute checkout holds, cutting no-shows with automated WhatsApp reminders.
+  - **0% Commission on Orders**: Unlike aggregators that levy 20% to 35% fees or SaaS builders with hidden transaction cuts, Visito keeps 100% of order revenue and customer data with the merchant.
+  - **Dual PWA with Instant Home Screen Install**: Zero app store friction; runs on Livewire 4 + Alpine with wire:navigate on a persistent shell with sub-100ms transitions and offline service worker.
 
 ## Technical Architecture & Standards
 

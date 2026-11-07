@@ -36,6 +36,7 @@ Here is the exact technical engineering implemented across the codebase to maxim
   - `Fitwell` $\rightarrow$ Targets `wedding wear rental software`, `bridal lehenga rental ERP`, `TailorPad alternative`, `Vyapar alternative for rental`, `tailor job card app`.
   - `Rajaram Marmo` $\rightarrow$ Targets `SAP Business One alternative`, `Marg ERP stone edition`.
   - `MandiERP` $\rightarrow$ Targets `mandi software`, `arhat software`, `APMC commission agent ERP`, `grain market billing desktop app`, `Tally mandi integration`, `Go desktop ERP`.
+  - `Visito` $\rightarrow$ Targets `Dukaan alternative`, `Bikayi alternative`, `Khatabook store alternative`, `DotPe alternative`, `hyperlocal commerce PWA`, `kirana store order app`, `neighbourhood shop booking software India`.
 - **Search Intent Copywriting**: Titles and descriptions are kept under optimal SERP pixel lengths (Title: 50–60 characters; Description: 140–160 characters) to avoid truncation in Google results.
 - **Canonical Tags**: Explicit `<link rel="canonical" href="...">` tags on every page prevent duplicate content penalties between `http`/`https` and `www`/`non-www`.
 
@@ -161,6 +162,7 @@ Use these terms in your social posts, case studies, directory listings, and disc
 | **Fitwell** | TailorPad, Rentigo, Vyapar | "Wedding wear rental software India", "Sherwani lehenga rental ERP", "Custom tailor job card software", "Wardrobe rental security deposit management" |
 | **Rajaram Marmo** | SAP Business One, Marg ERP | "Natural marble manufacturing ERP", "Stone gangsaw maintenance ERP" |
 | **MandiERP** | Sluggish Tally Add-ons, FoxPro Mandi software | "Offline mandi software India", "Go Wails APMC desktop ERP", "Arhat trading accounting software", "Mandi 15 deduction calculator Tally XML" |
+| **Visito** | Dukaan, Bikayi, Khatabook, DotPe | "Dukaan alternative 0% commission", "Hyperlocal grocery purchase list PWA", "Salon appointment booking software India", "Neighbourhood shop digital khata app" |
 
 ---
 

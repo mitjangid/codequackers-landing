@@ -131,6 +131,16 @@
       <image:title>MandiERP — Offline-First Mandi &amp; Arhat Trading Desktop ERP</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://codequackers.in/products/visito.html</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://codequackers.in/assets/icons/products/visito.png</image:loc>
+      <image:title>Visito — Hyperlocal Commerce PWA, Storefront &amp; Appointment Book</image:title>
+    </image:image>
+  </url>
 
   <!-- Legal & Trust Pages -->
   <url>
